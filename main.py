@@ -1,23 +1,25 @@
 from api.exchange_factory import ExchangeFactory
+from trayding.risk_manager import RiskManager
+from trayding.position_manager import PositionManager
 
 def main():
     exchange = ExchangeFactory.create_connector("bitget")
-
-    # Пример получения баланса и цены
-    try:
-        # Получение баланса
-        balance = exchange.fetch_balance()
-        print("Баланс:", balance['data'][0]['usdtBalance'])
-    except Exception as e:
-        print("Ошибка при получении баланса:", e)
+    risk_manager = RiskManager(exchange)
+    position_manager = PositionManager(exchange, risk_manager)
 
     try:
-        # Получение цены
-        ticker = exchange.fetch_ticker("BTCUSDT")
-        print("Текущая цена:", ticker['data'][0]['lastPr'])
-    except Exception as e:
-        print("Ошибка при получении цены:", e)
-        
+        position_manager.open_position(
+            symbol="BTCUSDT",
+            side="buy",           
+            amount_type="fixed",
+            market_type="futures",  
+            leverage=10.0,        
+            amount=100,       
+            product_type="USDT-FUTURES",
+            margin_coin="USDT"
+        )
+    except ValueError as e:
+        print(f"Ошибка: {e}")
 
 if __name__ == "__main__":
     main()

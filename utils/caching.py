@@ -3,12 +3,10 @@ from functools import wraps
 import logging
 from utils.logging_setup import setup_logger
 
-# Настройка логгера
 logger = setup_logger()
 
-# Инициализация кэша с временем жизни (TTL)
 price_cache = TTLCache(maxsize=100, ttl=5)
-balance_cache = TTLCache(maxsize=10, ttl=60)
+balance_cache = TTLCache(maxsize=10, ttl=10)
 
 def cached(cache):
     def decorator(func):

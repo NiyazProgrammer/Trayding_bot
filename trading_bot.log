@@ -1,0 +1,286 @@
+2025-03-13 13:52:45,568 - INFO - Fetching balance from Bitget API
+2025-03-13 13:52:46,217 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1044d4830>,)_{} обновлены в кэше
+2025-03-13 13:52:46,217 - INFO - Fetching ticker for BTCUSDT
+2025-03-13 13:52:46,622 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x1044d4830>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-13 13:53:25,569 - INFO - Fetching balance from Bitget API
+2025-03-13 13:53:26,079 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10295c830>,)_{} обновлены в кэше
+2025-03-13 13:53:26,079 - INFO - Fetching ticker for BTCUSDT
+2025-03-13 13:53:26,486 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x10295c830>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-13 13:53:35,350 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x106360830>,)_{} обновлены в кэше
+2025-03-13 13:53:35,351 - INFO - Fetching ticker for BTCUSDT
+2025-03-13 13:53:35,772 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x106360830>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-13 13:55:36,673 - INFO - Fetching balance from Bitget API
+2025-03-13 13:55:37,122 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1024c0830>,)_{} обновлены в кэше
+2025-03-13 13:55:37,122 - INFO - Fetching ticker for BTCUSDT
+2025-03-13 13:55:37,549 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x1024c0830>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-13 13:55:57,927 - INFO - Fetching balance from Bitget API
+2025-03-13 13:55:58,400 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x103b60830>,)_{} обновлены в кэше
+2025-03-13 13:55:58,400 - INFO - Fetching ticker for BTCUSDT
+2025-03-13 13:55:58,859 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x103b60830>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-13 13:56:19,396 - INFO - Fetching balance from Bitget API
+2025-03-13 13:56:19,834 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1067c0830>,)_{} обновлены в кэше
+2025-03-13 13:56:19,834 - INFO - Fetching ticker for BTCUSDT
+2025-03-13 13:56:20,245 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x1067c0830>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-13 13:56:49,596 - INFO - Fetching balance from Bitget API
+2025-03-13 13:56:50,037 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x101f5c830>,)_{} обновлены в кэше
+2025-03-13 13:56:50,038 - INFO - Fetching ticker for BTCUSDT
+2025-03-13 13:56:50,460 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x101f5c830>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-13 15:34:39,391 - INFO - Fetching balance from Bitget API
+2025-03-13 15:34:39,983 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104b23380>,)_{} обновлены в кэше
+2025-03-13 15:34:39,983 - ERROR - Ошибка: 'coin'. Повторная попытка 1/3
+2025-03-13 15:34:40,988 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104b23380>,)_{} взяты из кэша
+2025-03-13 15:34:40,988 - ERROR - Ошибка: 'coin'. Повторная попытка 2/3
+2025-03-13 15:34:41,993 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104b23380>,)_{} взяты из кэша
+2025-03-13 15:34:41,993 - ERROR - Ошибка: 'coin'. Повторная попытка 3/3
+2025-03-13 15:34:42,995 - ERROR - Превышено количество попыток
+2025-03-13 15:37:29,791 - INFO - Fetching balance from Bitget API
+2025-03-13 15:37:30,359 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104408440>,)_{} обновлены в кэше
+2025-03-13 15:37:30,360 - ERROR - Ошибка: 'coin'. Повторная попытка 1/3
+2025-03-13 15:37:31,361 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104408440>,)_{} взяты из кэша
+2025-03-13 15:37:31,361 - ERROR - Ошибка: 'coin'. Повторная попытка 2/3
+2025-03-13 15:37:32,367 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104408440>,)_{} взяты из кэша
+2025-03-13 15:37:32,367 - ERROR - Ошибка: 'coin'. Повторная попытка 3/3
+2025-03-13 15:37:33,372 - ERROR - Превышено количество попыток
+2025-03-13 15:38:42,597 - INFO - Fetching balance from Bitget API
+2025-03-13 15:38:43,093 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102f61e80>,)_{} обновлены в кэше
+2025-03-13 15:38:43,093 - ERROR - Ошибка: 'coin'. Повторная попытка 1/3
+2025-03-13 15:38:44,099 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102f61e80>,)_{} взяты из кэша
+2025-03-13 15:38:44,101 - ERROR - Ошибка: 'coin'. Повторная попытка 2/3
+2025-03-13 15:38:45,104 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102f61e80>,)_{} взяты из кэша
+2025-03-13 15:38:45,104 - ERROR - Ошибка: 'coin'. Повторная попытка 3/3
+2025-03-13 15:38:46,110 - ERROR - Превышено количество попыток
+2025-03-13 15:40:42,283 - INFO - Fetching balance from Bitget API
+2025-03-13 15:40:42,776 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1067ba270>,)_{} обновлены в кэше
+2025-03-13 15:40:42,776 - ERROR - Ошибка: 'coin'. Повторная попытка 1/3
+2025-03-13 15:40:43,782 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1067ba270>,)_{} взяты из кэша
+2025-03-13 15:40:43,783 - ERROR - Ошибка: 'coin'. Повторная попытка 2/3
+2025-03-13 15:40:44,788 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1067ba270>,)_{} взяты из кэша
+2025-03-13 15:40:44,789 - ERROR - Ошибка: 'coin'. Повторная попытка 3/3
+2025-03-13 15:40:45,795 - ERROR - Превышено количество попыток
+2025-03-13 15:42:34,634 - INFO - Fetching balance from Bitget API
+2025-03-13 15:42:35,123 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10091f230>,)_{} обновлены в кэше
+2025-03-13 15:42:35,123 - ERROR - Ошибка: 'coin'. Повторная попытка 1/3
+2025-03-13 15:42:36,128 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10091f230>,)_{} взяты из кэша
+2025-03-13 15:42:36,129 - ERROR - Ошибка: 'coin'. Повторная попытка 2/3
+2025-03-13 15:42:37,133 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10091f230>,)_{} взяты из кэша
+2025-03-13 15:42:37,133 - ERROR - Ошибка: 'coin'. Повторная попытка 3/3
+2025-03-13 15:42:38,135 - ERROR - Превышено количество попыток
+2025-03-13 15:46:05,782 - INFO - Fetching balance from Bitget API
+2025-03-13 15:46:06,381 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104c370e0>,)_{} обновлены в кэше
+2025-03-13 15:46:06,382 - ERROR - Ошибка: 'coin'. Повторная попытка 1/3
+2025-03-13 15:46:07,387 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104c370e0>,)_{} взяты из кэша
+2025-03-13 15:46:07,388 - ERROR - Ошибка: 'coin'. Повторная попытка 2/3
+2025-03-13 15:46:08,393 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104c370e0>,)_{} взяты из кэша
+2025-03-13 15:46:08,394 - ERROR - Ошибка: 'coin'. Повторная попытка 3/3
+2025-03-13 15:46:09,399 - ERROR - Превышено количество попыток
+2025-03-13 15:48:56,122 - INFO - Fetching balance from Bitget API
+2025-03-13 15:48:56,585 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104fb3230>,)_{} обновлены в кэше
+2025-03-13 15:48:56,585 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104fb3230>,)_{} взяты из кэша
+2025-03-13 15:48:56,585 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 200.2 USDT (включая комиссию)
+2025-03-13 15:48:56,585 - ERROR - Недостаточно средств для открытия позиции
+2025-03-13 15:48:56,585 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 1/3
+2025-03-13 15:48:57,591 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104fb3230>,)_{} взяты из кэша
+2025-03-13 15:48:57,591 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104fb3230>,)_{} взяты из кэша
+2025-03-13 15:48:57,592 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 200.2 USDT (включая комиссию)
+2025-03-13 15:48:57,592 - ERROR - Недостаточно средств для открытия позиции
+2025-03-13 15:48:57,592 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 2/3
+2025-03-13 15:48:58,597 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104fb3230>,)_{} взяты из кэша
+2025-03-13 15:48:58,598 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104fb3230>,)_{} взяты из кэша
+2025-03-13 15:48:58,598 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 200.2 USDT (включая комиссию)
+2025-03-13 15:48:58,598 - ERROR - Недостаточно средств для открытия позиции
+2025-03-13 15:48:58,598 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 3/3
+2025-03-13 15:48:59,603 - ERROR - Превышено количество попыток
+2025-03-13 15:51:35,621 - INFO - Fetching balance from Bitget API
+2025-03-13 15:51:36,105 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1046630e0>,)_{} обновлены в кэше
+2025-03-13 15:51:36,105 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1046630e0>,)_{} взяты из кэша
+2025-03-13 15:51:36,105 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 200.2 USDT (включая комиссию)
+2025-03-13 15:51:36,105 - ERROR - Недостаточно средств для открытия позиции
+2025-03-13 15:51:36,105 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 1/3
+2025-03-13 15:51:37,110 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1046630e0>,)_{} взяты из кэша
+2025-03-13 15:51:37,112 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1046630e0>,)_{} взяты из кэша
+2025-03-13 15:51:37,113 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 200.2 USDT (включая комиссию)
+2025-03-13 15:51:37,113 - ERROR - Недостаточно средств для открытия позиции
+2025-03-13 15:51:37,113 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 2/3
+2025-03-13 15:51:38,115 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1046630e0>,)_{} взяты из кэша
+2025-03-13 15:51:38,115 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1046630e0>,)_{} взяты из кэша
+2025-03-13 15:51:38,116 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 200.2 USDT (включая комиссию)
+2025-03-13 15:51:38,116 - ERROR - Недостаточно средств для открытия позиции
+2025-03-13 15:51:38,116 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 3/3
+2025-03-13 15:51:39,119 - ERROR - Превышено количество попыток
+2025-03-13 15:53:49,118 - INFO - Fetching balance from Bitget API
+2025-03-13 15:53:49,726 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104ab70e0>,)_{} обновлены в кэше
+2025-03-13 15:53:49,726 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104ab70e0>,)_{} взяты из кэша
+2025-03-13 15:53:49,727 - ERROR - Недостаточно средств для открытия позиции
+2025-03-13 15:53:49,727 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 1/3
+2025-03-13 15:53:50,732 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104ab70e0>,)_{} взяты из кэша
+2025-03-13 15:53:50,732 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104ab70e0>,)_{} взяты из кэша
+2025-03-13 15:53:50,732 - ERROR - Недостаточно средств для открытия позиции
+2025-03-13 15:53:50,732 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 2/3
+2025-03-13 15:53:51,738 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104ab70e0>,)_{} взяты из кэша
+2025-03-13 15:53:51,738 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104ab70e0>,)_{} взяты из кэша
+2025-03-13 15:53:51,738 - ERROR - Недостаточно средств для открытия позиции
+2025-03-13 15:53:51,738 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 3/3
+2025-03-13 15:53:52,743 - ERROR - Превышено количество попыток
+2025-03-13 15:54:17,719 - INFO - Fetching balance from Bitget API
+2025-03-13 15:54:18,187 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102cef0e0>,)_{} обновлены в кэше
+2025-03-13 15:54:18,187 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102cef0e0>,)_{} взяты из кэша
+2025-03-13 15:54:18,187 - INFO - Fetching ticker for BTCUSDT
+2025-03-13 15:54:18,653 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x102cef0e0>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-17 14:47:35,437 - INFO - Fetching balance from Bitget API
+2025-03-17 14:47:35,976 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102da30e0>,)_{} обновлены в кэше
+2025-03-17 14:47:35,977 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102da30e0>,)_{} взяты из кэша
+2025-03-17 14:47:35,977 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 14:47:35,977 - ERROR - Недостаточно средств для открытия позиции
+2025-03-17 14:47:35,978 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 1/3
+2025-03-17 14:47:36,983 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102da30e0>,)_{} взяты из кэша
+2025-03-17 14:47:36,983 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102da30e0>,)_{} взяты из кэша
+2025-03-17 14:47:36,983 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 14:47:36,983 - ERROR - Недостаточно средств для открытия позиции
+2025-03-17 14:47:36,983 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 2/3
+2025-03-17 14:47:37,989 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102da30e0>,)_{} взяты из кэша
+2025-03-17 14:47:37,990 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102da30e0>,)_{} взяты из кэша
+2025-03-17 14:47:37,990 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 14:47:37,990 - ERROR - Недостаточно средств для открытия позиции
+2025-03-17 14:47:37,990 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 3/3
+2025-03-17 14:47:38,996 - ERROR - Превышено количество попыток
+2025-03-17 14:48:52,960 - INFO - Fetching balance from Bitget API
+2025-03-17 14:48:53,444 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10210b230>,)_{} обновлены в кэше
+2025-03-17 14:48:53,444 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10210b230>,)_{} взяты из кэша
+2025-03-17 14:48:53,444 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 14:48:53,445 - ERROR - Недостаточно средств для открытия позиции
+2025-03-17 14:48:53,445 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 1/3
+2025-03-17 14:48:54,449 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10210b230>,)_{} взяты из кэша
+2025-03-17 14:48:54,450 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10210b230>,)_{} взяты из кэша
+2025-03-17 14:48:54,450 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 14:48:54,450 - ERROR - Недостаточно средств для открытия позиции
+2025-03-17 14:48:54,450 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 2/3
+2025-03-17 14:48:55,454 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10210b230>,)_{} взяты из кэша
+2025-03-17 14:48:55,454 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10210b230>,)_{} взяты из кэша
+2025-03-17 14:48:55,454 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 14:48:55,454 - ERROR - Недостаточно средств для открытия позиции
+2025-03-17 14:48:55,454 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 3/3
+2025-03-17 14:48:56,459 - ERROR - Превышено количество попыток
+2025-03-17 14:48:57,213 - INFO - Fetching balance from Bitget API
+2025-03-17 14:48:57,791 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10078f0e0>,)_{} обновлены в кэше
+2025-03-17 14:48:57,791 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10078f0e0>,)_{} взяты из кэша
+2025-03-17 14:48:57,791 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 14:48:57,791 - ERROR - Недостаточно средств для открытия позиции
+2025-03-17 14:48:57,791 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 1/3
+2025-03-17 14:48:58,796 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10078f0e0>,)_{} взяты из кэша
+2025-03-17 14:48:58,796 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10078f0e0>,)_{} взяты из кэша
+2025-03-17 14:48:58,796 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 14:48:58,796 - ERROR - Недостаточно средств для открытия позиции
+2025-03-17 14:48:58,796 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 2/3
+2025-03-17 14:48:59,802 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10078f0e0>,)_{} взяты из кэша
+2025-03-17 14:48:59,802 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10078f0e0>,)_{} взяты из кэша
+2025-03-17 14:48:59,802 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 14:48:59,802 - ERROR - Недостаточно средств для открытия позиции
+2025-03-17 14:48:59,802 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 3/3
+2025-03-17 14:49:00,803 - ERROR - Превышено количество попыток
+2025-03-17 14:49:51,191 - INFO - Fetching balance from Bitget API
+2025-03-17 14:49:51,690 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102aab0e0>,)_{} обновлены в кэше
+2025-03-17 14:49:51,691 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102aab0e0>,)_{} взяты из кэша
+2025-03-17 14:49:51,691 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 14:49:51,691 - ERROR - Недостаточно средств для открытия позиции
+2025-03-17 14:49:51,691 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 1/3
+2025-03-17 14:49:52,696 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102aab0e0>,)_{} взяты из кэша
+2025-03-17 14:49:52,696 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102aab0e0>,)_{} взяты из кэша
+2025-03-17 14:49:52,697 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 14:49:52,697 - ERROR - Недостаточно средств для открытия позиции
+2025-03-17 14:49:52,697 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 2/3
+2025-03-17 14:49:53,702 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102aab0e0>,)_{} взяты из кэша
+2025-03-17 14:49:53,702 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x102aab0e0>,)_{} взяты из кэша
+2025-03-17 14:49:53,703 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 14:49:53,703 - ERROR - Недостаточно средств для открытия позиции
+2025-03-17 14:49:53,703 - ERROR - Ошибка: Недостаточно средств. Повторная попытка 3/3
+2025-03-17 14:49:54,705 - ERROR - Превышено количество попыток
+2025-03-17 16:42:02,293 - INFO - Fetching balance from Bitget API
+2025-03-17 16:42:02,823 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1024d3230>,)_{} обновлены в кэше
+2025-03-17 16:42:02,823 - INFO - Fetching ticker for BTCUSDT
+2025-03-17 16:42:03,254 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x1024d3230>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-17 16:42:03,255 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1024d3230>,)_{} взяты из кэша
+2025-03-17 16:42:03,255 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 16:42:03,255 - ERROR - Ошибка: Недостаточно средств для открытия позиции. Повторная попытка 1/3
+2025-03-17 16:42:04,256 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1024d3230>,)_{} взяты из кэша
+2025-03-17 16:42:04,256 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x1024d3230>, 'BTCUSDT')_{} взяты из кэша
+2025-03-17 16:42:04,256 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1024d3230>,)_{} взяты из кэша
+2025-03-17 16:42:04,256 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 16:42:04,256 - ERROR - Ошибка: Недостаточно средств для открытия позиции. Повторная попытка 2/3
+2025-03-17 16:42:05,258 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1024d3230>,)_{} взяты из кэша
+2025-03-17 16:42:05,258 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x1024d3230>, 'BTCUSDT')_{} взяты из кэша
+2025-03-17 16:42:05,258 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1024d3230>,)_{} взяты из кэша
+2025-03-17 16:42:05,258 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 16:42:05,258 - ERROR - Ошибка: Недостаточно средств для открытия позиции. Повторная попытка 3/3
+2025-03-17 16:42:06,269 - ERROR - Превышено количество попыток
+2025-03-17 16:42:06,635 - INFO - Fetching balance from Bitget API
+2025-03-17 16:42:07,086 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104adf0e0>,)_{} обновлены в кэше
+2025-03-17 16:42:07,086 - INFO - Fetching ticker for BTCUSDT
+2025-03-17 16:42:07,528 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x104adf0e0>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-17 16:42:07,528 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104adf0e0>,)_{} взяты из кэша
+2025-03-17 16:42:07,528 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 16:42:07,528 - ERROR - Ошибка: Недостаточно средств для открытия позиции. Повторная попытка 1/3
+2025-03-17 16:42:08,531 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104adf0e0>,)_{} взяты из кэша
+2025-03-17 16:42:08,531 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x104adf0e0>, 'BTCUSDT')_{} взяты из кэша
+2025-03-17 16:42:08,532 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104adf0e0>,)_{} взяты из кэша
+2025-03-17 16:42:08,532 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 16:42:08,532 - ERROR - Ошибка: Недостаточно средств для открытия позиции. Повторная попытка 2/3
+2025-03-17 16:42:09,537 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104adf0e0>,)_{} взяты из кэша
+2025-03-17 16:42:09,537 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x104adf0e0>, 'BTCUSDT')_{} взяты из кэша
+2025-03-17 16:42:09,537 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x104adf0e0>,)_{} взяты из кэша
+2025-03-17 16:42:09,538 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-17 16:42:09,538 - ERROR - Ошибка: Недостаточно средств для открытия позиции. Повторная попытка 3/3
+2025-03-17 16:42:10,543 - ERROR - Превышено количество попыток
+2025-03-17 16:44:00,972 - INFO - Fetching balance from Bitget API
+2025-03-17 16:44:01,433 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1030830e0>,)_{} обновлены в кэше
+2025-03-17 16:44:01,433 - INFO - Fetching ticker for BTCUSDT
+2025-03-17 16:44:02,433 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x1030830e0>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-17 16:44:39,380 - INFO - Fetching balance from Bitget API
+2025-03-17 16:44:39,864 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10420f230>,)_{} обновлены в кэше
+2025-03-17 16:44:39,864 - INFO - Fetching ticker for BTCUSDT
+2025-03-17 16:44:40,288 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x10420f230>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-17 16:48:44,788 - INFO - Fetching balance from Bitget API
+2025-03-17 16:48:45,284 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1048730e0>,)_{} обновлены в кэше
+2025-03-17 16:48:45,284 - INFO - Fetching ticker for BTCUSDT
+2025-03-17 16:48:45,717 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x1048730e0>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-17 16:48:45,908 - INFO - Fetching balance from Bitget API
+2025-03-17 16:48:46,410 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10064b0e0>,)_{} обновлены в кэше
+2025-03-17 16:48:46,410 - INFO - Fetching ticker for BTCUSDT
+2025-03-17 16:48:46,893 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x10064b0e0>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-17 16:49:18,872 - INFO - Fetching balance from Bitget API
+2025-03-17 16:49:19,312 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10212f0e0>,)_{} обновлены в кэше
+2025-03-17 16:49:19,312 - INFO - Fetching ticker for BTCUSDT
+2025-03-17 16:49:19,759 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x10212f0e0>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-19 14:34:52,222 - INFO - Fetching balance from Bitget API
+2025-03-19 14:34:52,971 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1021630e0>,)_{} обновлены в кэше
+2025-03-19 14:34:52,971 - INFO - Fetching ticker for BTCUSDT
+2025-03-19 14:34:53,544 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x1021630e0>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-19 14:34:53,545 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1021630e0>,)_{} взяты из кэша
+2025-03-19 14:34:53,545 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-19 14:34:53,545 - ERROR - Ошибка: Недостаточно средств для открытия позиции. Повторная попытка 1/3
+2025-03-19 14:34:54,546 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1021630e0>,)_{} взяты из кэша
+2025-03-19 14:34:54,546 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x1021630e0>, 'BTCUSDT')_{} взяты из кэша
+2025-03-19 14:34:54,546 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1021630e0>,)_{} взяты из кэша
+2025-03-19 14:34:54,546 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-19 14:34:54,546 - ERROR - Ошибка: Недостаточно средств для открытия позиции. Повторная попытка 2/3
+2025-03-19 14:34:55,551 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1021630e0>,)_{} взяты из кэша
+2025-03-19 14:34:55,552 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x1021630e0>, 'BTCUSDT')_{} взяты из кэша
+2025-03-19 14:34:55,552 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x1021630e0>,)_{} взяты из кэша
+2025-03-19 14:34:55,552 - DEBUG - Проверка баланса: Доступно 0.0 USDT, Требуется 100.1 USDT (включая комиссию)
+2025-03-19 14:34:55,552 - ERROR - Ошибка: Недостаточно средств для открытия позиции. Повторная попытка 3/3
+2025-03-19 14:34:56,555 - ERROR - Превышено количество попыток
+2025-03-19 14:35:45,351 - INFO - Fetching balance from Bitget API
+2025-03-19 14:35:46,092 - INFO - Данные для fetch_balance_(<api.bitget_connector.BitgetConnector object at 0x10457f0e0>,)_{} обновлены в кэше
+2025-03-19 14:35:46,092 - INFO - Fetching ticker for BTCUSDT
+2025-03-19 14:35:46,660 - INFO - Данные для fetch_ticker_(<api.bitget_connector.BitgetConnector object at 0x10457f0e0>, 'BTCUSDT')_{} обновлены в кэше
+2025-03-19 15:36:27,060 - ERROR - Ошибка: BitgetConnector.get_available_balance() got an unexpected keyword argument 'account_type'. Повторная попытка 1/3
+2025-03-19 15:36:28,065 - ERROR - Ошибка: BitgetConnector.get_available_balance() got an unexpected keyword argument 'account_type'. Повторная попытка 2/3
+2025-03-19 15:36:29,067 - ERROR - Ошибка: BitgetConnector.get_available_balance() got an unexpected keyword argument 'account_type'. Повторная попытка 3/3
+2025-03-19 15:36:30,073 - ERROR - Превышено количество попыток
+2025-03-19 15:37:34,123 - ERROR - Ошибка: BitgetConnector.get_available_balance() got an unexpected keyword argument 'account_type'. Повторная попытка 1/3
+2025-03-19 15:37:35,128 - ERROR - Ошибка: BitgetConnector.get_available_balance() got an unexpected keyword argument 'account_type'. Повторная попытка 2/3
+2025-03-19 15:37:36,133 - ERROR - Ошибка: BitgetConnector.get_available_balance() got an unexpected keyword argument 'account_type'. Повторная попытка 3/3
+2025-03-19 15:37:37,138 - ERROR - Превышено количество попыток
+2025-03-19 23:37:29,224 - ERROR - Ошибка: BitgetConnector.get_available_balance() got an unexpected keyword argument 'account_type'. Повторная попытка 1/3
+2025-03-19 23:37:30,228 - ERROR - Ошибка: BitgetConnector.get_available_balance() got an unexpected keyword argument 'account_type'. Повторная попытка 2/3
+2025-03-19 23:37:31,233 - ERROR - Ошибка: BitgetConnector.get_available_balance() got an unexpected keyword argument 'account_type'. Повторная попытка 3/3
+2025-03-19 23:37:32,239 - ERROR - Превышено количество попыток
