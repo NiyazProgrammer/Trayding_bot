@@ -13,10 +13,10 @@ def main():
             side="buy",           
             amount_type="fixed",
             market_type="futures",  
-            leverage=10.0,        
             amount=100,       
             product_type="USDT-FUTURES",
-            margin_coin="USDT"
+            margin_coin="USDT",
+            leverage=10.0,        
         )
     except ValueError as e:
         print(f"Ошибка: {e}")

@@ -14,13 +14,13 @@ def cached(cache):
         def wrapper(*args, **kwargs):
             cache_key = f"{func.__name__}_{args}_{kwargs}"
             if cache_key in cache:
-                logger.info(f"Данные для {cache_key} взяты из кэша")
+                logger.debug(f"Данные для {cache_key} взяты из кэша")
                 return cache[cache_key]
             
             result = func(*args, **kwargs)
             if result and result.get('code') == '00000':
                 cache[cache_key] = result
-                logger.info(f"Данные для {cache_key} обновлены в кэше")
+                logger.debug(f"Данные для {cache_key} обновлены в кэше")
             return result
         return wrapper
     return decorator

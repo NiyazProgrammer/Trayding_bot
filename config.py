@@ -13,7 +13,7 @@ class ExchangeConfig:
     else:
         print("Не удалось загрузить файл .env")
 
-    LOG_LEVEL = os.getenv("LOG_LEVEL", "CRITICAL")
+    LOG_LEVEL = os.getenv("LOG_LEVEL", "DEBUG")
     COMMISSION_RATE = float(os.getenv("COMMISSION_RATE", 0.001))
     MAX_POSITION_SIZE = 0.2
     QUANTITY_PRECISION = 6

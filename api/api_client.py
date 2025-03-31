@@ -26,10 +26,6 @@ class APIClient(ABC):
     def _get_headers(self, timestamp, signature, method, body_str):
         """Сформировать заголовки (зависит от биржи)."""
         pass
-    @abstractmethod
-    def get_available_balance(self, symbol: str, account_type: str = "spot",product_type: str = None, margin_coin: str = None) -> float:
-         """Получить доступный баланс для торговой пары."""
-         pass
 
     @retry_on_failure(max_retries=3, delay=1)
     def _make_request(self, method, endpoint, params=None, body=None):

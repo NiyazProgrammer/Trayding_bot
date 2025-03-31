@@ -1,9 +1,10 @@
 from abc import ABC
 from utils.logging_setup import setup_logger
 from config import ExchangeConfig
+from api.base_exchange_connector import BaseExchangeConnector
 
 class RiskManager:
-    def __init__(self, exchange_connector):
+    def __init__(self, exchange_connector: BaseExchangeConnector):
         self.exchange = exchange_connector
         self.logger = setup_logger()
         self.max_position_size = 0
@@ -24,38 +25,25 @@ class RiskManager:
         symbol: str,
         required_amount: float,
         market_type: str,  
-        leverage: float = 1.0,
-        product_type: str = None,
-        margin_coin: str = None
-    ) -> bool:
-        available_balance = self.exchange.get_available_balance(symbol, market_type, product_type, margin_coin)
+        **kwargs
+   ) -> bool:
+        available_balance = self.exchange.get_available_balance(symbol, market_type, **kwargs)
         # Тут вместо ExchangeConfig.MAX_POSITION_SIZE мы будем брать из свойства структуры юзера
         self.max_position_size = available_balance * ExchangeConfig.MAX_POSITION_SIZE
 
         if required_amount > self.max_position_size:
             self.logger.warning(
-                f"Превышен лимит: {required_amount} > {self.max_position_size}"
+                f"Превышен лимит: {required_amount} USDT > {self.max_position_size} USDT"
             )
             return False
-    
+        
+        leverage = kwargs.get("leverage", 1.0)
         effective_amount = required_amount * leverage if market_type == "futures" else required_amount
         total_required = effective_amount + (effective_amount * ExchangeConfig.COMMISSION_RATE)
 
-        self.exchange.logger.debug(
-            f"Проверка баланса ({market_type}): "
-            f"Доступно {available_balance} USDT, "
-            f"Требуется {total_required} USDT (включая комиссию)"
-        )
+        self.logger.debug(f"Проверка баланса ({market_type}): ")
 
         return available_balance >= total_required
-    
-    def check_risk_limits(self, quantity: float) -> bool:
-        if quantity > self.max_position_size:
-            self.exchange.logger.error(
-                f"Превышен максимальный размер позиции: {quantity} > {self.max_position_size}"
-            )
-            return False
-        return True
     
     def validate_position(
         self, 
@@ -63,14 +51,11 @@ class RiskManager:
         required_amount: float,
         quantity: float,
         market_type: str,
-        leverage: float = 1.0,
-        product_type: str = None,
-        margin_coin: str = None
+        **kwargs
+        
     ) -> bool:
-        if not self.check_balance(symbol, required_amount, market_type, leverage, product_type):
+        if not self.check_balance(symbol, required_amount, market_type, **kwargs):
             raise ValueError("Недостаточно средств для открытия позиции")
-        if not self.check_risk_limits(quantity):
-            raise ValueError("Превышен максимальный размер позиции")
         if quantity <= 0:
             raise ValueError("Объем позиции должен быть больше нуля")
         return True
