@@ -2,7 +2,6 @@ from functools import wraps
 import time
 from utils.logging_setup import setup_logger
 
-# Настройка логгера
 logger = setup_logger()
 
 def retry_on_failure(max_retries=3, delay=1):

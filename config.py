@@ -13,7 +13,12 @@ class ExchangeConfig:
     else:
         print("Не удалось загрузить файл .env")
 
-    LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+    LOG_LEVEL = os.getenv("LOG_LEVEL", "DEBUG")
+    COMMISSION_RATE = float(os.getenv("COMMISSION_RATE", 0.001))
+    MAX_POSITION_SIZE = 0.2
+    QUANTITY_PRECISION = 6
+    MIN_USER_POSITION_PERCENTAGE = 0.05
+    MAX_USER_POSITION_PERCENTAGE = 0.20
 
     BITGET_CONFIG = {
         "base_url": "https://api.bitget.com",
