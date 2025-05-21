@@ -1,7 +1,11 @@
 from dotenv import load_dotenv
 import os
 
+class TelegramConfig:
+    BOT_TOKEN = os.getenv("BOT_TOKEN")
+
 class ExchangeConfig:
+
     # Очищение переменных окружений
     os.environ.pop("BITGET_API_KEY", None)
     os.environ.pop("BITGET_SECRET_KEY", None)
@@ -25,5 +29,13 @@ class ExchangeConfig:
         "api_key": os.getenv("BITGET_API_KEY"),
         "secret_key": os.getenv("BITGET_SECRET_KEY"),
         "passphrase": os.getenv("BITGET_PASSPHRASE"),
+        "cache_ttl": 5,
+    }
+    
+    BITGET_DEMO_CONFIG = {
+        "base_url": "https://api.bitget.com",
+        "api_key": os.getenv("BITGET_DEMO_API_KEY"),
+        "secret_key": os.getenv("BITGET_DEMO_SECRET_KEY"),
+        "passphrase": os.getenv("BITGET_DEMO_PASSPHRASE"),
         "cache_ttl": 5,
     }

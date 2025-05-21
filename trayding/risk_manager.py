@@ -24,10 +24,17 @@ class RiskManager:
         self,
         symbol: str,
         required_amount: float,
-        market_type: str,  
-        **kwargs
+        market_type: str,
+        product_type: str = None,
+        margin_coin: str = None,
+        leverage: float = None
    ) -> bool:
-        available_balance = self.exchange.get_available_balance(symbol, market_type, **kwargs)
+        available_balance = self.exchange.get_available_balance(
+            symbol,
+            account_type=market_type,
+            product_type=product_type,
+            margin_coin=margin_coin,
+        )
         # Тут вместо ExchangeConfig.MAX_POSITION_SIZE мы будем брать из свойства структуры юзера
         self.max_position_size = available_balance * ExchangeConfig.MAX_POSITION_SIZE
 
@@ -37,7 +44,7 @@ class RiskManager:
             )
             return False
         
-        leverage = kwargs.get("leverage", 1.0)
+        leverage = leverage
         effective_amount = required_amount * leverage if market_type == "futures" else required_amount
         total_required = effective_amount + (effective_amount * ExchangeConfig.COMMISSION_RATE)
 
@@ -51,10 +58,18 @@ class RiskManager:
         required_amount: float,
         quantity: float,
         market_type: str,
-        **kwargs
-        
+        product_type: str = None,
+        margin_coin: str = None,
+        leverage: float = None
     ) -> bool:
-        if not self.check_balance(symbol, required_amount, market_type, **kwargs):
+        if not self.check_balance(
+                symbol,
+                required_amount,
+                market_type,
+                product_type,
+                margin_coin,
+                leverage
+        ):
             raise ValueError("Недостаточно средств для открытия позиции")
         if quantity <= 0:
             raise ValueError("Объем позиции должен быть больше нуля")

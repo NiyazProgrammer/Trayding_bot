@@ -5,6 +5,12 @@ from abc import ABC, abstractmethod
 from utils.error_handling import retry_on_failure
 from utils.logging_setup import setup_logger
 
+
+def _get_timestamp():
+    """Получить текущее время в миллисекундах."""
+    return str(int(time.time() * 1000))
+
+
 class APIClient(ABC):
     def __init__(self, base_url, api_key, secret_key, passphrase=None):
         self.base_url = base_url
@@ -12,10 +18,6 @@ class APIClient(ABC):
         self.secret_key = secret_key
         self.passphrase = passphrase
         self.logger = setup_logger()
-
-    def _get_timestamp(self):
-        """Получить текущее время в миллисекундах."""
-        return str(int(time.time() * 1000))
 
     @abstractmethod
     def _sign(self, message):
@@ -27,9 +29,9 @@ class APIClient(ABC):
         """Сформировать заголовки (зависит от биржи)."""
         pass
 
-    @retry_on_failure(max_retries=3, delay=1)
+    # @retry_on_failure(max_retries=3, delay=1)
     def _make_request(self, method, endpoint, params=None, body=None):
-        timestamp = self._get_timestamp()
+        timestamp = _get_timestamp()
         request_path = endpoint
 
         sorted_params = sorted(params.items()) if params else []
@@ -47,9 +49,7 @@ class APIClient(ABC):
         )
 
         signature = self._sign(pre_hash_message)
-
         headers = self._get_headers(timestamp, signature, method, body_str)
-
         url = self.base_url + request_path_with_query
 
         try:
@@ -60,9 +60,10 @@ class APIClient(ABC):
             else:
                 raise ValueError("Unsupported HTTP method")
             
-            response.raise_for_status()
+            # response.raise_for_status()
 
-            return response.json()
+            # return response.json()
+            return response
         except requests.exceptions.RequestException as e:
             self.logger.error(f"API request failed: {e}")
             raise Exception(f"API request failed: {e}")
