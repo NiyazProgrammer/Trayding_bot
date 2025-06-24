@@ -23,6 +23,9 @@ class PositionManager:
         margin_coin: str = None,
         margin_mode: str = None,
     ) -> dict:
+        if not self.risk_manager.is_trading_allowed():
+            print("Торговля запрещена: превышен дневной лимит убытков")
+            return {}
 
         if amount_type not in ("fixed", "percentage"):
             raise ValueError("Неподдерживаемый тип объёма")
@@ -46,7 +49,7 @@ class PositionManager:
             product_type=product_type,
         )
 
-        self.risk_manager.validate_position(
+        is_validate_position = self.risk_manager.validate_position(
             symbol=symbol,
             required_amount=required_amount,
             quantity=quantity,
@@ -55,7 +58,8 @@ class PositionManager:
             margin_coin=margin_coin,
             leverage=leverage,
         )
-
+        if not is_validate_position:
+            return None
         order_params = self.exchange.create_order_params(
             symbol=symbol,
             side=side,
@@ -98,7 +102,6 @@ class PositionManager:
             execute_stop_loss_price: float = None,
             side: str = None,
             force="gtc",
-            **kwargs
     ):
         if side not in ["buy", "sell"]:
             raise ValueError("Параметр side должен быть 'buy' или 'sell'")
@@ -122,15 +125,13 @@ class PositionManager:
             "orderType": "market",
             "triggerType": trigger_type,
             "size": str(quantity),
-            "force": force
+            "force": force,
         }
 
         if execute_stop_loss_price:
             order["executeStopLossPrice"] = str(round(execute_stop_loss_price, 6))
 
-        kwargs.pop("market_type", None)
-
-        return self.exchange.place_plan_order(order_params=order, market_type="spot", **kwargs)
+        return self.exchange.place_plan_order(order_params=order, market_type="spot")
 
     def set_take_profit(
             self,
@@ -149,7 +150,7 @@ class PositionManager:
             raise ValueError("Параметр side должен быть 'buy' или 'sell'")
         if partial_targets:
             return self._set_partial_take_profits(
-                symbol, entry_price, quantity, partial_targets, side, force, trigger_type, **kwargs
+                symbol, entry_price, quantity, partial_targets, side, force, trigger_type
             )
         else:
             return self._set_single_take_profit(
@@ -209,8 +210,7 @@ class PositionManager:
             partial_targets,
             side,
             force="gtc",
-            trigger_type="fill_price",
-            **kwargs
+            trigger_type="fill_price"
     ):
         total_percent = sum(t["percent"] for t in partial_targets)
         if not abs(total_percent - 1.0) < 1e-3:
@@ -224,13 +224,108 @@ class PositionManager:
             order = {
                 "symbol": symbol,
                 "triggerPrice": str(round(target_price, 6)),
+                "executePrice": str(round(target_price, 6)),
                 "side": "sell" if side == "buy" else "buy",
-                "orderType": "market",
+                "orderType": "limit",
                 "triggerType": trigger_type,
                 "size": str(target_quantity),
                 "force": force
             }
-            kwargs.pop("market_type", None)
-            result = self.exchange.place_plan_order(order_params=order, market_type="spot", **kwargs)
+            result = self.exchange.place_plan_order(order_params=order, market_type="spot")
             orders.append(result)
         return orders
+
+    def set_trailing_stop(
+            self,
+            symbol: str,
+            quantity: float,
+            side: str,
+            trailing_distance: float,  # например, 0.05 = 5%
+            trailing_amount: float = None,
+            activation_price: float = None,  # можно не указывать, тогда сработает сразу
+            market_type: str = "futures",
+            product_type: str = "USDT-FUTURES",
+            margin_coin: str = "USDT",
+            margin_mode: str = "isolated"
+    ):
+        if market_type != "futures":
+            raise ValueError("Trailing stop доступен только для фьючерсного рынка")
+
+        if trailing_distance is None and trailing_amount is None:
+            raise ValueError("Нужно указать либо trailing_distance (в процентах), либо trailing_amount (в валюте)")
+
+        if trailing_distance is not None and trailing_amount is not None:
+            raise ValueError("Укажите только один параметр: либо trailing_distance, либо trailing_amount")
+
+        if not (0.01 <= trailing_distance <= 10):
+            raise ValueError("trailing_distance должен быть в диапазоне 0.01–10 (в процентах)")
+
+        trailing_order = {
+            "planType": "track_plan",
+            "symbol": symbol,
+            "productType": product_type,
+            "marginMode": margin_mode,
+            "marginCoin": margin_coin,
+            "size": str(quantity),
+            "orderType": "market",
+            "triggerType": "fill_price",
+            "side": "sell" if side == "buy" else "buy",
+            "tradeSide": "open"
+        }
+
+        if trailing_distance is not None:
+            if not (0.01 <= trailing_distance <= 10):
+                raise ValueError("trailing_distance должен быть в диапазоне от 0.01 до 10 (в процентах)")
+            trailing_order["callbackRatio"] = str(trailing_distance)
+
+        elif trailing_amount is not None:
+            trailing_order["callbackAmount"] = str(trailing_amount)
+
+        if activation_price:
+            trailing_order["triggerPrice"] = str(activation_price)
+
+        return self.exchange.place_plan_order(
+            order_params=trailing_order,
+            market_type=market_type
+        )
+
+
+    def set_pending_order(
+            self,
+            symbol: str,
+            quantity: float,
+            side: str,  # "buy" или "sell"
+            trigger_price: float,  # цена активации
+            order_type: str = "limit",  # "limit" или "market"
+            price: float = None,  # для лимитного
+            market_type: str = "futures",
+            product_type: str = "USDT-FUTURES",
+            margin_coin: str = "USDT",
+            margin_mode: str = "isolated",
+            trigger_type: str = "fill_price",  # или "fill_price"
+            plan_type: str = "normal_plan"
+    ):
+
+        if order_type not in ("limit", "market"):
+            raise ValueError("order_type должен быть 'limit' или 'market'")
+
+        order = {
+            "planType": plan_type,
+            "symbol": symbol,
+            "side": side,
+            "orderType": order_type,
+            "size": str(quantity),
+            "marginCoin": margin_coin,
+            "productType": product_type,
+            "marginMode": margin_mode,
+            "triggerPrice": str(trigger_price),
+            "triggerType": trigger_type,
+            "tradeSide": "open"
+        }
+
+        if order_type == "limit":
+            if price is None:
+                raise ValueError("Для лимитного ордера нужно указать price")
+            order["price"] = str(price)
+
+        return self.exchange.place_plan_order(order_params=order, market_type=market_type)

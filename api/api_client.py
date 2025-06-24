@@ -59,10 +59,7 @@ class APIClient(ABC):
                 response = requests.post(url, headers=headers, data=body_str)
             else:
                 raise ValueError("Unsupported HTTP method")
-            
-            # response.raise_for_status()
 
-            # return response.json()
             return response
         except requests.exceptions.RequestException as e:
             self.logger.error(f"API request failed: {e}")

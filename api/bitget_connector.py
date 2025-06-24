@@ -265,7 +265,22 @@ class BitgetConnector(APIClient, BaseExchangeConnector):
         else:
             raise ValueError("Неподдерживаемый тип рынка для планового ордера")
 
+
+        plan_type = order_params.get("planType")
+        if plan_type not in {"track_plan", "normal_plan", None}:
+            raise ValueError(f"Неподдерживаемый planType: {plan_type}")
+
+        if plan_type == "normal_plan":
+            if "triggerPrice" not in order_params:
+                raise ValueError("Для normal_plan необходим параметр triggerPrice")
+            if "triggerType" not in order_params:
+                order_params["triggerType"] = "market_price"
+
+            if order_params["orderType"] == "limit" and "price" not in order_params:
+                raise ValueError("Для лимитного ордера требуется параметр price")
+
         response = self._make_request("POST", endpoint, body=order_params)
+
         try:
             response.raise_for_status()
             return response.json()
@@ -280,3 +295,254 @@ class BitgetConnector(APIClient, BaseExchangeConnector):
             "symbol": symbol
         }
         return self._make_request("GET", endpoint, params=params).json()
+
+    def get_active_plan_orders(self, symbol: str, product_type: str = "USDT-FUTURES") -> list:
+        endpoint = "/api/v2/mix/order/current-plan"
+        params = {
+            "symbol": symbol,
+            "productType": product_type
+        }
+        response = self._make_request("GET", endpoint, params=params)
+        response.raise_for_status()
+        return response.json().get("data", [])
+
+    def cancel_trigger_order(
+            self, 
+            product_type: str, 
+            order_id_list: list[dict] = None,
+            symbol: str = None,
+            margin_coin: str = "USDT",
+            plan_type: str = None
+    ) -> dict:
+
+        path = "/api/v2/mix/order/cancel-plan-order"
+        
+
+        if not product_type:
+            raise ValueError("Параметр product_type обязателен")
+
+        if order_id_list and not symbol:
+            raise ValueError("При передаче order_id_list параметр symbol обязателен")
+
+        if order_id_list:
+            for order in order_id_list:
+                if not isinstance(order, dict):
+                    raise ValueError("Каждый элемент order_id_list должен быть словарем")
+                if not order.get("orderId") and not order.get("clientOid"):
+                    raise ValueError("Для каждого ордера требуется orderId или clientOid")
+
+        data = {
+            # "productType": product_type,
+            # "marginCoin": margin_coin,
+            "productType": product_type,
+            "marginCoin": margin_coin,
+        }
+
+        if order_id_list:
+            data["orderIdList"] = order_id_list
+        if symbol:
+            data["symbol"] = symbol
+        if plan_type:
+            data["planType"] = plan_type
+        
+        try:
+            response = self._make_request("POST", path, body=data)
+            response.raise_for_status()
+            result = response.json()
+
+            success_count = len(result.get("data", {}).get("successList", []))
+            failure_count = len(result.get("data", {}).get("failureList", []))
+            
+            self.logger.info(
+                f"Отмена ордеров: успешно {success_count}, "
+                f"неуспешно {failure_count}"
+            )
+
+            if failure_count > 0:
+                failures = result.get("data", {}).get("failureList", [])
+                for failure in failures:
+                    self.logger.warning(
+                        f"Не удалось отменить ордер {failure.get('orderId', failure.get('clientOid'))}: "
+                        f"{failure.get('errorMsg')}"
+                    )
+            
+            return result
+            
+        except requests.HTTPError:
+            try:
+                error_json = response.json()
+                code = error_json.get("code", "Unknown")
+                msg = error_json.get("msg", "")
+                error_message = self.bitget_error(code, msg)
+                self.logger.error(f"Ошибка при отмене плановых ордеров: {error_message}")
+                raise Exception(error_message)
+            except ValueError:
+                self.logger.error(f"Ошибка при отмене плановых ордеров: {response.text}")
+                raise Exception(f"Bitget error: {response.text}")
+
+    def modify_trigger_order(
+            self,
+            symbol: str,
+            product_type: str,
+            plan_type: str = None,
+            order_id: str = "",
+            client_oid: str = "",
+            new_size: str = "",
+            new_price: str = "",
+            new_trigger_price: str = "",
+            new_trigger_type: str = "",
+            new_stop_surplus_trigger_price: str = "",
+            new_stop_surplus_execute_price: str = "",
+            new_stop_surplus_trigger_type: str = "",
+            new_stop_loss_trigger_price: str = "",
+            new_stop_loss_execute_price: str = "",
+            new_stop_loss_trigger_type: str = "",
+            new_callback_ratio: str = ""
+    ) -> dict:
+
+        path = "/api/v2/mix/order/modify-plan-order"
+        
+        if not symbol or not product_type or not plan_type:
+            raise ValueError("Параметры symbol, product_type и plan_type обязательны")
+        
+        if not order_id and not client_oid:
+            raise ValueError("Требуется orderId или clientOid для идентификации ордера")
+        
+        self._validate_modify_order_params(
+            plan_type, new_callback_ratio, new_price, new_trigger_type, 
+            new_trigger_price, new_stop_surplus_trigger_price, 
+            new_stop_surplus_trigger_type, new_stop_loss_trigger_price, 
+            new_stop_loss_trigger_type
+        )
+        
+        data = {
+            "symbol": symbol,
+            "productType": product_type,
+            "planType": plan_type
+        }
+        
+        if order_id:
+            data["orderId"] = order_id
+        if client_oid:
+            data["clientOid"] = client_oid
+
+        optional_fields = {
+            "newSize": new_size,
+            "newPrice": new_price,
+            "newCallbackRatio": new_callback_ratio,
+            "newTriggerPrice": new_trigger_price,
+            "newTriggerType": new_trigger_type,
+            "newStopSurplusTriggerPrice": new_stop_surplus_trigger_price,
+            "newStopSurplusExecutePrice": new_stop_surplus_execute_price,
+            "newStopSurplusTriggerType": new_stop_surplus_trigger_type,
+            "newStopLossTriggerPrice": new_stop_loss_trigger_price,
+            "newStopLossExecutePrice": new_stop_loss_execute_price,
+            "newStopLossTriggerType": new_stop_loss_trigger_type
+        }
+
+        changes = {k: v for k, v in optional_fields.items() if v != ""}
+        data.update(changes)
+        
+        if not changes:
+            raise ValueError("Необходимо указать хотя бы один параметр для изменения")
+
+        try:
+            response = self._make_request("POST", path, body=data)
+            response.raise_for_status()
+            result = response.json()
+            
+            self.logger.info(
+                f"Ордер {order_id or client_oid} успешно изменен. "
+                f"Изменены поля: {list(changes.keys())}"
+            )
+            
+            return result
+            
+        except requests.HTTPError:
+            try:
+                error_json = response.json()
+                code = error_json.get("code", "Unknown")
+                msg = error_json.get("msg", "")
+                error_message = self.bitget_error(code, msg)
+                self.logger.error(f"Ошибка при изменении планового ордера: {error_message}")
+                raise Exception(error_message)
+            except ValueError:
+                self.logger.error(f"Ошибка при изменении планового ордера: {response.text}")
+                raise Exception(f"Bitget error: {response.text}")
+
+    def _validate_modify_order_params(
+            self, 
+            plan_type: str,
+            new_callback_ratio: str,
+            new_price: str,
+            new_trigger_type: str,
+            new_trigger_price: str,
+            new_stop_surplus_trigger_price: str,
+            new_stop_surplus_trigger_type: str,
+            new_stop_loss_trigger_price: str,
+            new_stop_loss_trigger_type: str
+    ):
+
+        if plan_type in ["track_plan", "moving_plan"]:
+            # newCallbackRatio обязательный для трейлинг-стопов
+            if new_callback_ratio and float(new_callback_ratio) > 10:
+                raise ValueError("Коэффициент трейлинга не должен превышать 10%")
+            
+            if new_price:
+                raise ValueError("newPrice должен быть пустым для трейлинг-стоп ордеров")
+            if new_stop_surplus_trigger_price or new_stop_loss_trigger_price:
+                raise ValueError("TP/SL параметры должны быть пустыми для трейлинг-стоп ордеров")
+        
+        # Для обычных триггерных ордеров (normal_plan)
+        elif plan_type == "normal_plan":
+            # newCallbackRatio должен быть пустым для обычных ордеров
+            if new_callback_ratio:
+                raise ValueError("newCallbackRatio должен быть пустым для обычных триггерных ордеров")
+        
+        if new_trigger_type and not new_trigger_price:
+            raise ValueError("При указании newTriggerType обязательно указать newTriggerPrice")
+        
+        if new_trigger_type and new_trigger_type not in ["fill_price", "mark_price"]:
+            raise ValueError("newTriggerType должен быть 'fill_price' или 'mark_price'")
+        
+        if new_stop_surplus_trigger_price and new_stop_surplus_trigger_type:
+            if new_stop_surplus_trigger_type not in ["fill_price", "mark_price"]:
+                raise ValueError("newStopSurplusTriggerType должен быть 'fill_price' или 'mark_price'")
+        
+        if new_stop_loss_trigger_price and new_stop_loss_trigger_type:
+            if new_stop_loss_trigger_type not in ["fill_price", "mark_price"]:
+                raise ValueError("newStopLossTriggerType должен быть 'fill_price' или 'mark_price'")
+        
+        if new_stop_surplus_trigger_price and not new_stop_surplus_trigger_type:
+            raise ValueError("При указании newStopSurplusTriggerPrice обязательно указать newStopSurplusTriggerType")
+        
+        if new_stop_loss_trigger_price and not new_stop_loss_trigger_type:
+            raise ValueError("При указании newStopLossTriggerPrice обязательно указать newStopLossTriggerType")
+
+    def get_account_bills(
+            self,
+            product_type: str = "USDT-FUTURES",
+            business_type: str = None,
+            start_time: int = None,
+            end_time: int = None,
+            limit: int = 100
+    ) -> dict:
+        # Получает историю биллинга по аккаунту (только за последние 90 дней, максимум 30 дней за раз)
+
+        if self.demo_trading:
+            return {}
+
+        path = "/api/v2/mix/account/bill"
+        params = {
+            "productType": product_type,
+            "limit": str(limit)
+        }
+
+        if business_type:
+            params["businessType"] = business_type
+        if start_time:
+            params["startTime"] = str(start_time)
+        if end_time:
+            params["endTime"] = str(end_time)
+
+        return self._make_request("GET", path, params=params)
