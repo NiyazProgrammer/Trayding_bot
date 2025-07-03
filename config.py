@@ -23,6 +23,7 @@ class ExchangeConfig:
     QUANTITY_PRECISION = 6
     MIN_USER_POSITION_PERCENTAGE = 0.05
     MAX_USER_POSITION_PERCENTAGE = 0.20
+    DAILY_LOSS_LIMIT = 50
 
     BITGET_CONFIG = {
         "base_url": "https://api.bitget.com",

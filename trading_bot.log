@@ -284,3 +284,124 @@
 2025-03-19 23:37:30,228 - ERROR - Ошибка: BitgetConnector.get_available_balance() got an unexpected keyword argument 'account_type'. Повторная попытка 2/3
 2025-03-19 23:37:31,233 - ERROR - Ошибка: BitgetConnector.get_available_balance() got an unexpected keyword argument 'account_type'. Повторная попытка 3/3
 2025-03-19 23:37:32,239 - ERROR - Превышено количество попыток
+2025-06-05 02:01:40,699 - ERROR - Ошибка при размещении планового ордера: {"code":"400172","msg":"planType not empty","requestTime":1749078100738,"data":null}
+2025-06-05 02:02:07,350 - ERROR - Ошибка при размещении планового ордера: {"code":"400172","msg":"The trigger type is illegal","requestTime":1749078127376,"data":null}
+2025-06-05 02:03:17,886 - ERROR - Ошибка при размещении планового ордера: {"code":"400172","msg":"planType not empty","requestTime":1749078154432,"data":null}
+2025-06-05 02:24:47,774 - ERROR - Ошибка при размещении планового ордера: {"code":"400172","msg":"The order type cannot be empty","requestTime":1749079474815,"data":null}
+2025-06-05 02:28:03,471 - ERROR - Ошибка при размещении планового ордера: {"code":"43011","msg":"The parameter does not meet the specification d delegateType is error","requestTime":1749079683503,"data":null}
+2025-06-05 02:28:11,242 - ERROR - Ошибка при размещении планового ордера: {"code":"43011","msg":"The parameter does not meet the specification d delegateType is error","requestTime":1749079691288,"data":null}
+2025-06-05 02:30:03,537 - ERROR - Ошибка при размещении планового ордера: {"code":"43011","msg":"The parameter does not meet the specification d delegateType is error","requestTime":1749079796751,"data":null}
+2025-06-05 02:30:44,341 - ERROR - Ошибка при размещении планового ордера: {"code":"43011","msg":"The parameter does not meet the specification d delegateType is error","requestTime":1749079831608,"data":null}
+2025-06-13 17:11:19,026 - INFO - Fetching futures balance from Bitget API
+2025-06-13 17:12:19,219 - INFO - Fetching futures balance from Bitget API
+2025-06-13 17:12:20,668 - INFO - Fetching futures ticker for BTCUSDT
+2025-06-13 17:12:21,812 - INFO - Fetching futures balance from Bitget API
+2025-06-13 17:12:23,022 - WARNING - Превышен лимит: 50 USDT > 0.0 USDT
+2025-06-13 17:20:15,297 - INFO - Fetching futures balance from Bitget API
+2025-06-13 17:21:28,165 - INFO - Fetching futures balance from Bitget API
+2025-06-14 16:23:44,214 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:23:45,565 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:23:46,232 - DEBUG - Проверка баланса (spot): 
+2025-06-14 16:23:46,724 - INFO - Ошибка Bitget: sign签名错误 (код: None)
+2025-06-14 16:24:34,353 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:24:37,318 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:24:42,175 - DEBUG - Проверка баланса (spot): 
+2025-06-14 16:24:49,500 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:24:50,249 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:24:51,125 - DEBUG - Проверка баланса (spot): 
+2025-06-14 16:24:51,622 - INFO - Ошибка Bitget: sign签名错误 (код: None)
+2025-06-14 16:25:31,542 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:25:56,595 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:26:18,006 - DEBUG - Проверка баланса (spot): 
+2025-06-14 16:27:30,559 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:27:31,286 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:27:31,923 - DEBUG - Проверка баланса (spot): 
+2025-06-14 16:29:21,965 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:29:25,011 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:29:27,725 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 16:33:08,094 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:33:15,378 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:33:17,808 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 16:36:17,879 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:36:20,644 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:36:25,274 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 16:37:10,659 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:37:21,231 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:37:25,231 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 16:41:07,395 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:41:10,737 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:41:12,849 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 16:58:09,551 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:58:10,052 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:58:10,552 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 16:59:00,694 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:59:01,176 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:59:01,694 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 16:59:28,463 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:59:29,012 - INFO - Fetching spot balance from Bitget API
+2025-06-14 16:59:29,558 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 16:59:30,056 - INFO - Ошибка Bitget: Insufficient balance (код: None)
+2025-06-14 17:00:33,557 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:00:34,033 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:00:34,508 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 17:00:34,994 - INFO - Ошибка Bitget: Insufficient balance (код: None)
+2025-06-14 17:01:02,172 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:01:09,293 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:01:15,916 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 17:01:28,923 - INFO - Ошибка Bitget: Insufficient balance (код: None)
+2025-06-14 17:02:04,287 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:02:07,436 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:02:10,077 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 17:04:30,665 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:04:31,146 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:04:31,636 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 17:04:32,119 - INFO - Ошибка Bitget: Insufficient balance (код: None)
+2025-06-14 17:06:18,395 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:06:37,716 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:06:50,118 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 17:07:30,133 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:07:33,688 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:07:35,748 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-14 17:07:59,998 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:08:00,476 - INFO - Fetching spot balance from Bitget API
+2025-06-14 17:08:00,957 - WARNING - Превышен лимит: 100 USDT > 0.0 USDT
+2025-06-24 15:24:05,471 - INFO - Отмена ордеров: успешно 1, неуспешно 0
+2025-06-24 15:28:56,843 - INFO - Отмена ордеров: успешно 1, неуспешно 0
+2025-06-24 15:30:33,863 - INFO - Отмена ордеров: успешно 0, неуспешно 0
+2025-06-24 15:31:57,423 - INFO - Отмена ордеров: успешно 1, неуспешно 0
+2025-06-24 15:33:07,916 - INFO - Отмена ордеров: успешно 2, неуспешно 0
+2025-06-24 15:36:22,913 - INFO - Отмена ордеров: успешно 0, неуспешно 0
+2025-06-24 15:36:31,171 - INFO - Отмена ордеров: успешно 1, неуспешно 0
+2025-06-24 15:40:37,799 - ERROR - Ошибка при изменении планового ордера: Ошибка Bitget: Plan order does not exist (код: 43025)
+2025-06-24 15:58:05,865 - INFO - Ордер 1321389568909918208 успешно изменен. Изменены поля: ['newSize', 'newPrice', 'newTriggerPrice', 'newTriggerType']
+2025-06-24 16:01:46,260 - INFO - Отмена ордеров: успешно 1, неуспешно 0
+2025-06-24 16:02:22,239 - INFO - Ордер 1321391235193663489 успешно изменен. Изменены поля: ['newCallbackRatio', 'newTriggerPrice']
+2025-06-24 17:46:32,203 - INFO - Fetching futures balance from Bitget API
+2025-06-24 17:49:00,150 - INFO - Fetching futures balance from Bitget API
+2025-06-24 17:49:04,500 - INFO - Fetching futures ticker for BTCUSDT
+2025-06-24 17:49:14,258 - INFO - Fetching futures balance from Bitget API
+2025-06-24 17:49:16,298 - DEBUG - Проверка баланса (futures): 
+2025-06-24 17:50:37,461 - INFO - Fetching futures balance from Bitget API
+2025-06-24 17:50:38,084 - INFO - Fetching futures ticker for BTCUSDT
+2025-06-24 17:50:38,535 - INFO - Fetching futures balance from Bitget API
+2025-06-24 17:50:39,024 - DEBUG - Проверка баланса (futures): 
+2025-06-24 17:52:40,322 - INFO - Fetching futures balance from Bitget API
+2025-06-24 17:52:43,716 - INFO - Fetching futures ticker for BTCUSDT
+2025-06-24 17:52:46,804 - INFO - Fetching futures balance from Bitget API
+2025-06-24 17:52:49,493 - DEBUG - Проверка баланса (futures): 
+2025-06-24 18:53:32,462 - INFO - Fetching futures balance from Bitget API
+2025-06-24 18:53:35,192 - INFO - Fetching futures ticker for BTCUSDT
+2025-06-24 18:53:37,626 - INFO - Fetching futures balance from Bitget API
+2025-06-24 18:53:40,112 - DEBUG - Проверка баланса (futures): 
+2025-06-24 19:01:40,781 - INFO - Fetching futures balance from Bitget API
+2025-06-24 19:01:42,338 - INFO - Fetching futures ticker for BTCUSDT
+2025-06-24 19:01:43,841 - INFO - Fetching futures balance from Bitget API
+2025-06-24 19:01:45,320 - DEBUG - Проверка баланса (futures): 
+2025-06-24 19:11:53,430 - INFO - Fetching futures balance from Bitget API
+2025-06-24 19:11:54,088 - INFO - Fetching futures ticker for BTCUSDT
+2025-06-24 19:11:54,528 - INFO - Fetching futures balance from Bitget API
+2025-06-24 19:11:55,007 - DEBUG - Проверка баланса (futures): 
+2025-06-24 19:12:19,759 - INFO - Fetching futures balance from Bitget API
+2025-06-24 19:12:20,384 - INFO - Fetching futures ticker for BTCUSDT
+2025-06-24 19:12:20,861 - INFO - Fetching futures balance from Bitget API
+2025-06-24 19:12:21,336 - DEBUG - Проверка баланса (futures): 

@@ -1,14 +1,15 @@
-from abc import ABC
 from utils.logging_setup import setup_logger
 from config import ExchangeConfig
 from api.base_exchange_connector import BaseExchangeConnector
+from datetime import datetime, timezone
 
 class RiskManager:
-    def __init__(self, exchange_connector: BaseExchangeConnector):
+    def __init__(self, exchange_connector: BaseExchangeConnector, daily_loss_limit: float):
         self.exchange = exchange_connector
         self.logger = setup_logger()
         self.max_position_size = 0
         self.user_max_position_percentage = {}
+        self.daily_loss_limit = daily_loss_limit
 
     # Временный для проверки макс позиции
     def set_user_max_position(self, user_id: int, percentage: float):
@@ -19,7 +20,12 @@ class RiskManager:
         
         self.user_max_position_percentage[user_id] = percentage
         self.logger.info(f"Пользователь {user_id} установил лимит: {percentage * 100}%")
-    
+
+    def get_today_timestamp_range(self):
+        now = datetime.now(timezone.utc)
+        start = datetime(now.year, now.month, now.day, tzinfo=timezone.utc)
+        return int(start.timestamp() * 1000), int(now.timestamp() * 1000)
+
     def check_balance(
         self,
         symbol: str,
@@ -51,10 +57,10 @@ class RiskManager:
         self.logger.debug(f"Проверка баланса ({market_type}): ")
 
         return available_balance >= total_required
-    
+
     def validate_position(
-        self, 
-        symbol: str, 
+        self,
+        symbol: str,
         required_amount: float,
         quantity: float,
         market_type: str,
@@ -70,8 +76,44 @@ class RiskManager:
                 margin_coin,
                 leverage
         ):
-            raise ValueError("Недостаточно средств для открытия позиции")
+            print("Недостаточно средств для открытия позиции")
+            return False
         if quantity <= 0:
-            raise ValueError("Объем позиции должен быть больше нуля")
+            print("Объем позиции должен быть больше нуля")
+            return False
         return True
-    
+
+    def is_trading_allowed(self, product_type="SUSDT-FUTURES") -> bool:
+        """
+        Проверяет, разрешена ли торговля на основе дневного PnL.
+        Если убытки за день превысили лимит, торговля блокируется.
+        """
+        start_ts, end_ts = self.get_today_timestamp_range()
+
+        try:
+            daily_pnl = 0.0
+
+            for business_type in ["close_long", "close_short"]:
+                bills_response = self.exchange.get_account_bills(
+                    product_type=product_type,
+                    start_time=start_ts,
+                    end_time=end_ts,
+                    business_type=business_type,
+                    limit=100
+                )
+
+                if not bills_response:
+                    continue
+
+                bills_data = bills_response.json()
+                bills = bills_data.get("data", {}).get("bills", [])
+                pnl = sum(float(bill["amount"]) for bill in bills)
+                daily_pnl += pnl
+
+            print(f"[RiskManager] Daily PnL: {daily_pnl:.2f} USDT")
+
+            return daily_pnl >= -abs(self.daily_loss_limit)
+
+        except Exception as e:
+            raise ValueError(f"[RiskManager] Ошибка при проверке дневного PnL: {e}")
+
