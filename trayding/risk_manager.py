@@ -33,7 +33,8 @@ class RiskManager:
         market_type: str,
         product_type: str = None,
         margin_coin: str = None,
-        leverage: float = None
+        leverage: float = None,
+        order_type: str = "market"
    ) -> bool:
         available_balance = self.exchange.get_available_balance(
             symbol,
@@ -52,7 +53,8 @@ class RiskManager:
         
         leverage = leverage
         effective_amount = required_amount * leverage if market_type == "futures" else required_amount
-        total_required = effective_amount + (effective_amount * ExchangeConfig.COMMISSION_RATE)
+        commission_rate = self.exchange.get_commission_rate(market_type, order_type)
+        total_required = effective_amount + (effective_amount * commission_rate)
 
         self.logger.debug(f"Проверка баланса ({market_type}): ")
 
@@ -66,7 +68,8 @@ class RiskManager:
         market_type: str,
         product_type: str = None,
         margin_coin: str = None,
-        leverage: float = None
+        leverage: float = None,
+        order_type: str = "market"
     ) -> bool:
         if not self.check_balance(
                 symbol,
@@ -74,7 +77,8 @@ class RiskManager:
                 market_type,
                 product_type,
                 margin_coin,
-                leverage
+                leverage,
+                order_type
         ):
             print("Недостаточно средств для открытия позиции")
             return False

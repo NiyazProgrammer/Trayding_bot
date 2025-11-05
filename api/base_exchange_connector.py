@@ -1,23 +1,24 @@
 from abc import ABC, abstractmethod
+from typing import Optional, List, Dict, Union
 
 class BaseExchangeConnector(ABC):
     @abstractmethod
-    def fetch_balance(self, account_type: str = "spot",  margin_coin: str = None, symbol: str = None, product_type: str = None) -> dict:
+    def fetch_balance(self, account_type: str = "spot",  margin_coin: Optional[str] = None, symbol: Optional[str] = None, product_type: Optional[str] = None) -> dict:
         """Получить баланс."""
         pass
 
     @abstractmethod
-    def fetch_ticker(self, symbol: str, market_type: str = "spot", product_type: str = None) -> dict:
+    def fetch_ticker(self, symbol: str, market_type: str = "spot", product_type: Optional[str] = None) -> dict:
         """Получить текущую цену."""
         pass
     
     @abstractmethod
-    def get_available_balance(self, symbol: str, account_type: str = "spot", product_type: str = None, margin_coin: str = None) -> float:
+    def get_available_balance(self, symbol: str, account_type: str = "spot", product_type: Optional[str] = None, margin_coin: Optional[str] = None) -> float:
         """Получить доступный баланс для торговой пары."""
         pass
 
     @abstractmethod
-    def calculate_quantity(self, required_amount: float, symbol: str, market_type: str, side: str, order_type: str, leverage: float = None, product_type: str = None) -> float:
+    def calculate_quantity(self, required_amount: float, symbol: str, market_type: str, side: str, order_type: str, leverage: Optional[float] = None, product_type: Optional[str] = None) -> float:
        """Расчет объема."""
        pass
 
@@ -27,12 +28,12 @@ class BaseExchangeConnector(ABC):
         pass
 
     @abstractmethod
-    def get_commission_rate(self, market_type: str) -> float:
-        """Получить комиссию для рынка (например, 0.001 для спота)."""
+    def get_commission_rate(self, market_type: str, order_type: str = "market") -> float:
+        """ Получить комиссию для рынка с учетом типа ордера. """
         pass
 
     @abstractmethod
-    def place_order(self, order_params: dict, market_type: str, product_type: str = None, margin_coin: str = None, margin_mode: str = None) -> dict:
+    def place_order(self, order_params: dict, market_type: str, product_type: Optional[str] = None, margin_coin: Optional[str] = None, margin_mode: Optional[str] = None) -> dict:
         """Разместить ордер."""
         pass
     
@@ -41,8 +42,30 @@ class BaseExchangeConnector(ABC):
         pass
     
     @abstractmethod
-    def get_order_details(self, order_id: str, symbol: str, market_type: str):
+    def place_tpsl_order(self, order_params: dict) -> dict:
+        """Размещает стоп-лосс или тейк-профит ордер через специальный API для фьючерсов."""
         pass
+    
+    @abstractmethod
+    def get_positions(self, symbol: str = "", product_type: str = "USDT-FUTURES", margin_coin: str = "USDT") -> List[Dict]:
+        """Получает список текущих позиций."""
+        pass
+    
+    @abstractmethod
+    def modify_tpsl_order(self, order_params: dict) -> dict:
+        """Изменяет стоп-лосс или тейк-профит ордер."""
+        pass
+
+    def get_active_plan_orders(
+            self, symbol: str = "",
+            product_type: str = "USDT-FUTURES",
+            plan_type: Optional[str] = None,
+            order_id: Optional[str] = None,
+            client_oid: Optional[str] = None,
+            limit: int = 100
+    ) -> List[Dict]:
+        """Получает активные плановые ордера."""
+        return []
 
     def set_pending_order(
             self,
@@ -51,38 +74,39 @@ class BaseExchangeConnector(ABC):
             side: str,  # "buy" или "sell"
             trigger_price: float,  # цена активации
             order_type: str = "limit",  # "limit" или "market"
-            price: float = None,  # для лимитного
+            price: Optional[float] = None,  # для лимитного
             market_type: str = "futures",
             product_type: str = "USDT-FUTURES",
             margin_coin: str = "USDT",
             margin_mode: str = "isolated",
             trigger_type: str = "market_price"  # или "fill_price"
-    ):
+    ) -> dict:
         """
         Устанавливает отложенный лимитный или стоп-маркет ордер.
         """
-        pass
+        return {}
 
     def get_account_bills(
             self,
             product_type: str = "SUSDT-FUTURES",
-            business_type: str = None,
-            start_time: int = None,
-            end_time: int = None,
+            business_type: Optional[str] = None,
+            start_time: Optional[int] = None,
+            end_time: Optional[int] = None,
             limit: int = 100
     ) -> dict:
-        pass
+        """Получает историю биллинга по аккаунту."""
+        return {}
 
     def cancel_trigger_order(
             self, 
             product_type: str, 
-            order_id_list: list[dict] | None = None,
-            symbol: str | None = None, 
+            order_id_list: Optional[List[Dict]] = None,
+            symbol: Optional[str] = None, 
             margin_coin: str = "USDT",
-            plan_type: str | None = None
+            plan_type: Optional[str] = None
     ) -> dict:
         """Отмена плановых ордеров."""
-        pass
+        return {}
 
     @abstractmethod
     def modify_trigger_order(
@@ -105,4 +129,17 @@ class BaseExchangeConnector(ABC):
             new_callback_ratio: str = ""
     ) -> dict:
         """Изменение параметров отложенного ордера до активации."""
+        pass
+
+    @abstractmethod
+    def set_leverage(
+            self,
+            symbol: str,
+            product_type: str,
+            margin_coin: str,
+            leverage: Optional[str] = None,
+            long_leverage: Optional[str] = None,
+            short_leverage: Optional[str] = None,
+            hold_side: Optional[str] = None
+    ) -> dict:
         pass
