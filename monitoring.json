@@ -1,0 +1,29 @@
+{
+  "sessions": {
+    "20251007_143115": {
+      "session_start": "2025-10-07T14:31:15.733875",
+      "session_duration_seconds": 4.305510997772217,
+      "total_requests": 5,
+      "successful_requests": 5,
+      "failed_requests": 0,
+      "success_rate": 1.0,
+      "error_rate": 0.0,
+      "latency": {
+        "average_ms": 656.2661647796631,
+        "min_ms": 498.6429214477539,
+        "max_ms": 831.4208984375,
+        "median_ms": 627.5289058685303,
+        "p95_ms": 831.4208984375,
+        "p99_ms": 831.4208984375
+      },
+      "requests_per_minute": 69.67814044726114,
+      "requests_per_hour": 4180.688426835669,
+      "errors_by_type": {},
+      "anomalies_detected": 0,
+      "current_requests_per_minute": 5,
+      "timestamp": "2025-10-07T14:31:20.039449",
+      "monitoring_active": true
+    }
+  },
+  "last_update": "2025-10-07T14:31:20.043052"
+}
