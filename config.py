@@ -1,8 +1,13 @@
 from dotenv import load_dotenv
 import os
-from utils.logging_setup import setup_logger
 
-logger = setup_logger()
+# Lazy logger initialization to avoid circular imports
+def get_logger():
+    from utils.logging_setup import setup_logger
+    log_level = os.getenv("LOG_LEVEL", "DEBUG")
+    return setup_logger(log_level)
+
+logger = get_logger()
 
 class TelegramConfig:
     BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -70,4 +75,17 @@ class ExchangeConfig:
         "secret_key": os.getenv("BITGET_DEMO_SECRET_KEY"),
         "passphrase": os.getenv("BITGET_DEMO_PASSPHRASE"),
         "cache_ttl": 5,
+    }
+    
+    STRATEGY_CONFIG = {
+        "strategy_name": "WAVEX",
+        "ema_len": 100,
+        "rsi_len": 14,
+        "rsi_stop": 20,
+        "anti_rsi_stop": 70,
+        "averaging": [
+            {"percent": 4, "enabled": True},
+            {"percent": 8, "enabled": True},
+            {"percent": 12, "enabled": True},
+        ]
     }

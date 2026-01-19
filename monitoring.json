@@ -23,7 +23,33 @@
       "current_requests_per_minute": 5,
       "timestamp": "2025-10-07T14:31:20.039449",
       "monitoring_active": true
+    },
+    "20260117_184948": {
+      "session_start": "2026-01-17T18:49:48.614342",
+      "session_duration_seconds": 309.58403611183167,
+      "total_requests": 9,
+      "successful_requests": 7,
+      "failed_requests": 2,
+      "success_rate": 0.7777777777777778,
+      "error_rate": 0.2222222222222222,
+      "latency": {
+        "average_ms": 525.3298547532823,
+        "min_ms": 468.60289573669434,
+        "max_ms": 616.9488430023193,
+        "median_ms": 523.4429836273193,
+        "p95_ms": 616.9488430023193,
+        "p99_ms": 616.9488430023193
+      },
+      "requests_per_minute": 1.7442759865206188,
+      "requests_per_hour": 104.65655919123712,
+      "errors_by_type": {
+        "APIError": 2
+      },
+      "anomalies_detected": 0,
+      "current_requests_per_minute": 1,
+      "timestamp": "2026-01-17T18:54:58.198413",
+      "monitoring_active": true
     }
   },
-  "last_update": "2025-10-07T14:31:20.043052"
+  "last_update": "2026-01-17T18:54:58.198889"
 }
