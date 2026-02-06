@@ -1,10 +1,11 @@
 from api.base_exchange_connector import BaseExchangeConnector
+from trayding.PositionManagerProtocol import PositionManagerProtocol
 from utils.logging_setup import setup_logger
 from utils.safety_checks import SafetyValidator
 from utils.unified_error_handler import UnifiedErrorHandler, ErrorType
 
 
-class PositionManager:
+class PositionManager(PositionManagerProtocol):
     def __init__(self, exchange_connector: BaseExchangeConnector, risk_manager, enable_safety_checks: bool = True):
         self.exchange = exchange_connector
         self.risk_manager = risk_manager
@@ -19,6 +20,29 @@ class PositionManager:
         else:
             self.safety_validator = None
 
+    # def strategy:
+    #     signal = strategy.on_candle_close(price, rsi, ema, state)
+    #
+    #     if signal["signal"] == "BUYX":
+    #         state.position_open = True
+    #         state.entry_price = price
+    #
+    #         for level in state.averaging_levels:
+    #             level.level = price * (1 - level.percentage / 100)
+    #             level.filled = False
+    #
+    #     elif signal["signal"].startswith("AVER"):
+    #         idx = signal["index"]
+    #         state.averaging_levels[idx].filled = True
+    #
+    #     elif signal["signal"] == "CLOSEX":
+    #         state.position_open = False
+    #         state.entry_price = None
+    #
+    #         for level in state.averaging_levels:
+    #             level.level = None
+    #             level.filled = False
+
     def open_position(
         self,
         symbol: str,
@@ -26,7 +50,7 @@ class PositionManager:
         amount_type: str,
         order_type: str,
         market_type: str = "spot",
-        amount: float = 0.0,
+        amount: int = 0.0,
         percentage: float = 0.0,
         position_action: str = "",
         leverage: float = 0.0,
@@ -40,6 +64,14 @@ class PositionManager:
 
         if amount_type not in ("fixed", "percentage"):
             raise ValueError("Неподдерживаемый тип объёма")
+
+        if market_type == "futures" and leverage > 0:
+            self.set_leverage(
+                symbol=symbol,
+                leverage=leverage,
+                product_type=product_type,
+                margin_coin=margin_coin
+            )
 
         available_balance = self.exchange.get_available_balance(
             symbol,
@@ -59,6 +91,10 @@ class PositionManager:
             leverage=leverage,
             product_type=product_type,
         )
+
+        if quantity <= 0:
+            self.logger.warning("Quantity = 0, order skipped")
+            return {}
 
         is_validate_position = self.risk_manager.validate_position(
             symbol=symbol,
@@ -1223,7 +1259,7 @@ class PositionManager:
         
        
         close_side = "buy" if position_side == "long" else "sell"
-        
+
         self.logger.info(f"Частичное закрытие позиции  {symbol}:")
         self.logger.info(f"  Размер позиции: {position_size} ({position_side})")
         self.logger.info(f"  Закрываем: {close_quantity} ({close_type}: {close_value})")

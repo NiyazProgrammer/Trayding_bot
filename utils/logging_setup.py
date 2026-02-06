@@ -1,29 +1,16 @@
-import logging
-from config import ExchangeConfig
+from utils.simple_logger import get_simple_logger
+import os
 
 _logger = None
 
-def setup_logger():
+def setup_logger(log_level=None):
     global _logger
     if _logger is not None:
-        return _logger  
-
-    logger = logging.getLogger("trading_bot")
-    logger.setLevel(ExchangeConfig.LOG_LEVEL) 
-
-    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-
-    file_handler = logging.FileHandler("trading_bot.log")
-    file_handler.setLevel(logging.DEBUG)
-    file_handler.setFormatter(formatter)
-
-    stream_handler = logging.StreamHandler()
-    stream_handler.setLevel(logging.INFO)
-    stream_handler.setFormatter(formatter)
-
-    if not logger.handlers:
-            logger.addHandler(file_handler)
-            logger.addHandler(stream_handler)
+        return _logger
     
-    _logger = logger 
-    return logger
+    # Use simple logger to avoid circular dependencies
+    if log_level is None:
+        log_level = os.getenv("LOG_LEVEL", "INFO")
+    
+    _logger = get_simple_logger("trading_bot", log_level)
+    return _logger

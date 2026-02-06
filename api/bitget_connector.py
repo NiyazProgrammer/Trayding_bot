@@ -540,12 +540,18 @@ class BitgetConnector(APIClient, BaseExchangeConnector):
         
         if market_type == "spot" and order_type == "market" and side == "buy":
             return round(required_amount, ExchangeConfig.QUANTITY_PRECISION)
-        
+
+
+
         ticker_data = self.fetch_ticker(symbol, market_type, product_type)['data'][0]
         current_price = float(ticker_data['lastPr'])
+
+        if market_type == "futures":
+            leverage = leverage if leverage > 0 else 1
+
         leverage = leverage
         commission_rate = self.get_commission_rate(market_type, order_type)
-        
+
         effective_amount = required_amount * leverage if market_type == "futures" else required_amount
         commission = effective_amount * commission_rate
 
@@ -1206,12 +1212,57 @@ class BitgetConnector(APIClient, BaseExchangeConnector):
         
         return open_positions    
 
+    def get_candles(
+            self,
+            symbol: str,
+            timeframe: str = "1H",
+            limit: int = 200,
+            product_type: str = "USDT-FUTURES"
+    ) -> list:
+        self.logger.info(f"Получение свечей для {symbol} ({timeframe}), лимит: {limit}")
+        
+        endpoint = "/api/v2/mix/market/candles"
+        
+        params = {
+            "symbol": symbol,
+            "granularity": timeframe,
+            "limit": min(limit, 200),
+            "productType": product_type
+        }
+        
+        result = self._safe_api_request("GET", endpoint, params=params, operation="get_candles")
+        
+        if result["success"]:
+            raw_data = result.get("data", [])
+            candles = []
+            
+            # Преобразуем сырые данные в стандартный формат
+            for item in raw_data:
+                try:
+                    candle = {
+                        "timestamp": int(item[0]),
+                        "open": float(item[1]),
+                        "high": float(item[2]),
+                        "low": float(item[3]),
+                        "close": float(item[4]),
+                        "volume": float(item[5])
+                    }
+                    candles.append(candle)
+                except (ValueError, IndexError) as e:
+                    self.logger.warning(f"Пропущены некорректные данные свечи: {item} - Ошибка: {e}")
+                    continue
+            
+            self.logger.debug(f"Успешно получено {len(candles)} свечей для {symbol}")
+            return candles
+        else:
+            raise Exception(f"Failed to get candles: {result.get('error')}")
+    
     def set_leverage(
         self,
         symbol: str,
         product_type: str,
         margin_coin: str,
-        leverage: str = "",
+        leverage: float = "",
         long_leverage: str = "",
         short_leverage: str = "",
         hold_side: str = ""

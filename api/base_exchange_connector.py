@@ -137,9 +137,20 @@ class BaseExchangeConnector(ABC):
             symbol: str,
             product_type: str,
             margin_coin: str,
-            leverage: Optional[str] = None,
+            leverage: str = None,
             long_leverage: Optional[str] = None,
             short_leverage: Optional[str] = None,
             hold_side: Optional[str] = None
     ) -> dict:
+        pass
+    
+    @abstractmethod
+    def get_candles(
+            self,
+            symbol: str,
+            timeframe: str = "1H",
+            limit: int = 200,
+            product_type: str = "USDT-FUTURES"
+    ) -> List[Dict]:
+        """Получить свечи."""
         pass

@@ -1,57 +1,25 @@
-import time
-import uuid
-from time import sleep
-import config
-from utils.logging_setup import setup_logger
 
-logger = setup_logger()
-from api.exchange_factory import ExchangeFactory
-from trayding.risk_manager import RiskManager
-from trayding.position_manager import PositionManager
-from config import ExchangeConfig
-from config import TelegramConfig
-from api.bitget_connector import BitgetConnector
-from datetime import datetime, timezone
 import asyncio
+from utils.logging_setup import setup_logger
+logger = setup_logger()
+from View.UI.telegram_bot import TelegramTradingBot
+from config import TelegramConfig
 
 def main():
-    exchange = ExchangeFactory.create_connector("bitget", True)
-    risk_manager = RiskManager(exchange,daily_loss_limit=ExchangeConfig.DAILY_LOSS_LIMIT)
-    position_manager = PositionManager(exchange, risk_manager)
+    if not TelegramConfig.BOT_TOKEN:
+        raise RuntimeError("BOT_TOKEN is not set")
 
-    # Проверка открытия позиции на споте
-    # position = position_manager.open_position(
-    #     symbol="BTCUSDT",
-    #     side="buy",
-    #     amount_type="fixed",ч
-    #     order_type="market",
-    #     market_type="spot",
-    #     amount=100,
-    #     product_type="USDT-SPOT"
-    #     # price=price,
-    #     # force=force
-    # )
-    # print(f"Открыта позиция: {position}")
+    logger.info("🤖 WAVEX Telegram Bot starting...")
 
-    # Проверка открытие позиции на фьючах
-    position = position_manager.open_position(
-        symbol="BTCUSDT",
-        side="buy",
-        amount_type="fixed",
-        amount=100,  # USDT
-        order_type="market",
-        market_type="futures",
-        leverage=1,
-        product_type="USDT-FUTURES",
-        margin_coin="USDT",
-        position_action = "open",
-        margin_mode = "crossed"
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
+    bot = TelegramTradingBot(
+        token=TelegramConfig.BOT_TOKEN,
+        loop=loop,
     )
-    logger.info(f"Открыта позиция: {position}")
 
-
-
-
+    bot.run()
 
 
 if __name__ == "__main__":

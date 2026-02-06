@@ -23,7 +23,229 @@
       "current_requests_per_minute": 5,
       "timestamp": "2025-10-07T14:31:20.039449",
       "monitoring_active": true
+    },
+    "20260117_184948": {
+      "session_start": "2026-01-17T18:49:48.614342",
+      "session_duration_seconds": 309.58403611183167,
+      "total_requests": 9,
+      "successful_requests": 7,
+      "failed_requests": 2,
+      "success_rate": 0.7777777777777778,
+      "error_rate": 0.2222222222222222,
+      "latency": {
+        "average_ms": 525.3298547532823,
+        "min_ms": 468.60289573669434,
+        "max_ms": 616.9488430023193,
+        "median_ms": 523.4429836273193,
+        "p95_ms": 616.9488430023193,
+        "p99_ms": 616.9488430023193
+      },
+      "requests_per_minute": 1.7442759865206188,
+      "requests_per_hour": 104.65655919123712,
+      "errors_by_type": {
+        "APIError": 2
+      },
+      "anomalies_detected": 0,
+      "current_requests_per_minute": 1,
+      "timestamp": "2026-01-17T18:54:58.198413",
+      "monitoring_active": true
+    },
+    "20260119_172201": {
+      "session_start": "2026-01-19T17:22:01.028665",
+      "session_duration_seconds": 105085.24028396606,
+      "total_requests": 1,
+      "successful_requests": 1,
+      "failed_requests": 0,
+      "success_rate": 1.0,
+      "error_rate": 0.0,
+      "latency": {
+        "average_ms": 253701.7080783844,
+        "min_ms": 253701.7080783844,
+        "max_ms": 253701.7080783844,
+        "median_ms": 253701.7080783844,
+        "p95_ms": 253701.7080783844,
+        "p99_ms": 253701.7080783844
+      },
+      "requests_per_minute": 0.0005709650550150078,
+      "requests_per_hour": 0.03425790330090047,
+      "errors_by_type": {},
+      "anomalies_detected": 1,
+      "current_requests_per_minute": 1,
+      "timestamp": "2026-01-20T22:33:26.269443",
+      "monitoring_active": true
+    },
+    "20260123_145755": {
+      "session_start": "2026-01-23T14:57:55.182538",
+      "session_duration_seconds": 342.13769006729126,
+      "total_requests": 2,
+      "successful_requests": 2,
+      "failed_requests": 0,
+      "success_rate": 1.0,
+      "error_rate": 0.0,
+      "latency": {
+        "average_ms": 135981.978058815,
+        "min_ms": 7878.684997558594,
+        "max_ms": 264085.2711200714,
+        "median_ms": 264085.2711200714,
+        "p95_ms": 264085.2711200714,
+        "p99_ms": 264085.2711200714
+      },
+      "requests_per_minute": 0.3507359857851339,
+      "requests_per_hour": 21.044159147108033,
+      "errors_by_type": {},
+      "anomalies_detected": 1,
+      "current_requests_per_minute": 1,
+      "timestamp": "2026-01-23T15:03:37.320415",
+      "monitoring_active": true
+    },
+    "20260127_131746": {
+      "session_start": "2026-01-27T13:17:46.404511",
+      "session_duration_seconds": 309.39758110046387,
+      "total_requests": 10,
+      "successful_requests": 10,
+      "failed_requests": 0,
+      "success_rate": 1.0,
+      "error_rate": 0.0,
+      "latency": {
+        "average_ms": 936.7458343505859,
+        "min_ms": 515.9337520599365,
+        "max_ms": 2206.618070602417,
+        "median_ms": 855.0872802734375,
+        "p95_ms": 2206.618070602417,
+        "p99_ms": 2206.618070602417
+      },
+      "requests_per_minute": 1.9392523944948854,
+      "requests_per_hour": 116.35514366969312,
+      "errors_by_type": {},
+      "anomalies_detected": 0,
+      "current_requests_per_minute": 1,
+      "timestamp": "2026-01-27T13:22:55.802201",
+      "monitoring_active": true
+    },
+    "20260127_172106": {
+      "session_start": "2026-01-27T17:21:06.509057",
+      "session_duration_seconds": 609.1312828063965,
+      "total_requests": 11,
+      "successful_requests": 11,
+      "failed_requests": 0,
+      "success_rate": 1.0,
+      "error_rate": 0.0,
+      "latency": {
+        "average_ms": 824.6414011174983,
+        "min_ms": 661.6418361663818,
+        "max_ms": 1056.5471649169922,
+        "median_ms": 765.7270431518555,
+        "p95_ms": 1056.5471649169922,
+        "p99_ms": 1056.5471649169922
+      },
+      "requests_per_minute": 1.0835102688524558,
+      "requests_per_hour": 65.01061613114734,
+      "errors_by_type": {},
+      "anomalies_detected": 0,
+      "current_requests_per_minute": 1,
+      "timestamp": "2026-01-27T17:31:15.640427",
+      "monitoring_active": true
+    },
+    "20260127_194536": {
+      "session_start": "2026-01-27T19:45:36.678112",
+      "session_duration_seconds": 723.1752729415894,
+      "total_requests": 12,
+      "successful_requests": 9,
+      "failed_requests": 3,
+      "success_rate": 0.75,
+      "error_rate": 0.25,
+      "latency": {
+        "average_ms": 25262.05774148305,
+        "min_ms": 807.758092880249,
+        "max_ms": 96043.96104812622,
+        "median_ms": 2172.4233627319336,
+        "p95_ms": 96043.96104812622,
+        "p99_ms": 96043.96104812622
+      },
+      "requests_per_minute": 0.9956092622903523,
+      "requests_per_hour": 59.736555737421135,
+      "errors_by_type": {
+        "NetworkError": 3
+      },
+      "anomalies_detected": 3,
+      "current_requests_per_minute": 1,
+      "timestamp": "2026-01-27T19:57:39.853466",
+      "monitoring_active": true
+    },
+    "20260129_112110": {
+      "session_start": "2026-01-29T11:21:10.333593",
+      "session_duration_seconds": 1217.3745338916779,
+      "total_requests": 25,
+      "successful_requests": 25,
+      "failed_requests": 0,
+      "success_rate": 1.0,
+      "error_rate": 0.0,
+      "latency": {
+        "average_ms": 693.0058288574219,
+        "min_ms": 494.86398696899414,
+        "max_ms": 1138.242244720459,
+        "median_ms": 664.7961139678955,
+        "p95_ms": 1119.4300651550293,
+        "p99_ms": 1138.242244720459
+      },
+      "requests_per_minute": 1.2321598310462687,
+      "requests_per_hour": 73.92958986277613,
+      "errors_by_type": {},
+      "anomalies_detected": 0,
+      "current_requests_per_minute": 1,
+      "timestamp": "2026-01-29T11:41:27.709100",
+      "monitoring_active": true
+    },
+    "20260204_233151": {
+      "session_start": "2026-02-04T23:31:51.197397",
+      "session_duration_seconds": 616.9231879711151,
+      "total_requests": 26,
+      "successful_requests": 26,
+      "failed_requests": 0,
+      "success_rate": 1.0,
+      "error_rate": 0.0,
+      "latency": {
+        "average_ms": 647.3980683546799,
+        "min_ms": 511.6281509399414,
+        "max_ms": 1019.0920829772949,
+        "median_ms": 615.2491569519043,
+        "p95_ms": 788.9039516448975,
+        "p99_ms": 1019.0920829772949
+      },
+      "requests_per_minute": 2.5286778490696653,
+      "requests_per_hour": 151.72067094417991,
+      "errors_by_type": {},
+      "anomalies_detected": 0,
+      "current_requests_per_minute": 1,
+      "timestamp": "2026-02-04T23:42:08.122221",
+      "monitoring_active": true
+    },
+    "20260205_095824": {
+      "session_start": "2026-02-05T09:58:24.166668",
+      "session_duration_seconds": 27077.869688272476,
+      "total_requests": 412,
+      "successful_requests": 392,
+      "failed_requests": 20,
+      "success_rate": 0.9514563106796117,
+      "error_rate": 0.04854368932038835,
+      "latency": {
+        "average_ms": 5859.503817789763,
+        "min_ms": 615.4947280883789,
+        "max_ms": 96062.56628036499,
+        "median_ms": 840.29221534729,
+        "p95_ms": 75102.16617584229,
+        "p99_ms": 96052.39176750183
+      },
+      "requests_per_minute": 0.9129226296079829,
+      "requests_per_hour": 54.77535777647897,
+      "errors_by_type": {
+        "NetworkError": 20
+      },
+      "anomalies_detected": 40,
+      "current_requests_per_minute": 1,
+      "timestamp": "2026-02-05T17:29:42.038153",
+      "monitoring_active": true
     }
   },
-  "last_update": "2025-10-07T14:31:20.043052"
+  "last_update": "2026-02-05T17:29:42.040402"
 }
