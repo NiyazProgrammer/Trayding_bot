@@ -65,6 +65,14 @@ class PositionManager(PositionManagerProtocol):
         if amount_type not in ("fixed", "percentage"):
             raise ValueError("Неподдерживаемый тип объёма")
 
+        if market_type == "futures" and leverage > 0:
+            self.set_leverage(
+                symbol=symbol,
+                leverage=leverage,
+                product_type=product_type,
+                margin_coin=margin_coin
+            )
+
         available_balance = self.exchange.get_available_balance(
             symbol,
             account_type=market_type,
@@ -83,6 +91,10 @@ class PositionManager(PositionManagerProtocol):
             leverage=leverage,
             product_type=product_type,
         )
+
+        if quantity <= 0:
+            self.logger.warning("Quantity = 0, order skipped")
+            return {}
 
         is_validate_position = self.risk_manager.validate_position(
             symbol=symbol,

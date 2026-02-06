@@ -1,11 +1,11 @@
 from typing import Dict, List, Optional
-import logging
 from config import ExchangeConfig
 from strategies.entity.strategy_state import StrategyState
+from utils.logging_setup import setup_logger
 
 class WAVEXStrategy:
     def __init__(self, user_id: Optional[str] = None):
-        self.logger = logging.getLogger("WAVEXStrategy")
+        self.logger = setup_logger()
         self.user_id = user_id
 
         config = ExchangeConfig.STRATEGY_CONFIG

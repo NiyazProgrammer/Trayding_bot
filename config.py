@@ -9,7 +9,17 @@ def get_logger():
 
 logger = get_logger()
 
+
+
 class TelegramConfig:
+    os.environ.pop("BOT_TOKEN", None)
+
+    dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
+    if load_dotenv(dotenv_path):
+        logger.info("Файл .env успешно загружен")
+    else:
+        logger.error("Не удалось загрузить файл .env")
+
     BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 class ExchangeConfig:
@@ -18,6 +28,7 @@ class ExchangeConfig:
     os.environ.pop("BITGET_API_KEY", None)
     os.environ.pop("BITGET_SECRET_KEY", None)
     os.environ.pop("BITGET_PASSPHRASE", None)
+
 
     dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
     if load_dotenv(dotenv_path):
@@ -28,6 +39,14 @@ class ExchangeConfig:
     LOG_LEVEL = os.getenv("LOG_LEVEL", "DEBUG")
     MAX_POSITION_SIZE = 0.2
     QUANTITY_PRECISION = 6
+
+# ----- дефолтные параметры пользователя ------
+    DEFAULT_SYMBOL = "BTCUSDT"
+    DEFAULT_TIMEFRAME = "1H"
+    DEFAULT_AMOUNT = 100
+    DEFAULT_LEVERAGE = 1
+
+    MAX_LEVERAGE = 10
 
     # Точность количества для разных торговых пар
     QUANTITY_PRECISION_MAP = {
@@ -49,6 +68,45 @@ class ExchangeConfig:
     MIN_USER_POSITION_PERCENTAGE = 0.05
     MAX_USER_POSITION_PERCENTAGE = 0.20
     DAILY_LOSS_LIMIT = 50
+
+    DEFAULT_LEVERAGE_BY_TIMEFRAME = {
+        "3m": 10,
+        "5m": 10,
+        "7m": 10,
+
+        "15m": 7,
+        "30m": 5,
+
+        "1h": 5,
+        "3h": 3,
+        "4h": 3,
+
+        "1d": 2,
+    }
+
+    FALLBACK_LEVERAGE = 3
+
+    ALLOWED_TIMEFRAMES = {
+        "3M", "5M", "7M",
+        "15M", "30M",
+        "1H", "3H", "4H",
+        "1D"
+    }
+
+    TIMEFRAME_MAP = {
+        "1m": "1m",
+        "3m": "3m",
+        "5m": "5m",
+        "15m": "15m",
+        "30m": "30m",
+        "1h": "1H",
+        "4h": "4H",
+        "6h": "6H",
+        "12h": "12H",
+        "1d": "1D",
+        "1w": "1W",
+        "1mth": "1M",
+    }
 
     COMMISSION_RATES = {
         "spot": {

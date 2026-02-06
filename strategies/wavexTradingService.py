@@ -1,10 +1,12 @@
-import logging
 from typing import Optional
 from strategies.entity.strategy_state import StrategyState
 from strategies.CandleServiceProtocol import CandleService
 from strategies.indicatorService import IndicatorService
 from strategies.wawexstrategy  import WAVEXStrategy
 from trayding.PositionManagerProtocol import PositionManagerProtocol
+from utils.logging_setup import setup_logger
+
+logger = setup_logger()
 
 
 
@@ -15,6 +17,8 @@ class WAVEXTradingService:
         user_id: str,
         symbol: str,
         timeframe: str = "1H",
+        amount: float = 1.0,
+        leverage: float = 1.0,
         position_manager: PositionManagerProtocol = None,
         state_strategy: StrategyState = None,
         candle_service: CandleService = None,
@@ -22,13 +26,14 @@ class WAVEXTradingService:
     ):
         self.symbol = symbol
         self.timeframe = timeframe
+        self.amount = amount
+        self.leverage = leverage
 
         # --- Services ---
         self.pm = position_manager
         self.state = state_strategy
         self.candle_service = candle_service # BitgetCandleService()
         self.indicator_service = indicator_service # IndicatorService(self.candle_service)
-        logging.basicConfig(level=logging.INFO)
 
         # --- Strategy ---
         self.strategy = WAVEXStrategy()
@@ -43,14 +48,14 @@ class WAVEXTradingService:
             )
 
             if data is None:
-                logging.info("No new candle was found")
+                logger.info("No new candle was found")
                 return
 
             price = data["price"]
             ema = data["ema"]
             rsi = data["rsi"]
 
-            logging.info(f"Price: {price}, EMA: {ema}, RSI: {rsi}")
+            logger.info(f"Price: {price}, EMA: {ema}, RSI: {rsi}")
 
             # 2. Вызываем стратегию
             signal = self.strategy.on_candle_close(
@@ -62,8 +67,10 @@ class WAVEXTradingService:
 
             self.handler_signal(signal, price)
 
+            return signal
+
         except Exception as e:
-            logging.error(f"Error in bot cycle: {e}")
+            logger.error(f"Error in bot cycle: {e}")
 
 
     def handler_signal(
@@ -72,11 +79,11 @@ class WAVEXTradingService:
         price: float
     ):
         if not signal:
-            logging.info("No signal")
+            logger.info("No signal")
             return
 
         signal_type = signal["signal"]
-        logging.info(f"Signal received: {signal_type}")
+        logger.info(f"Signal received: {signal_type}")
 
         try:
 
@@ -87,10 +94,10 @@ class WAVEXTradingService:
                     symbol=self.symbol,
                     side="buy",
                     amount_type="fixed",
-                    amount=100,
+                    amount=self.amount,
                     order_type="market",
                     market_type="futures",
-                    leverage=1,
+                    leverage=self.leverage,
                     product_type="USDT-FUTURES",
                     margin_coin="USDT",
                     position_action="open",
@@ -104,7 +111,7 @@ class WAVEXTradingService:
                     lvl.level = price * (1 - lvl.percentage / 100)
                     lvl.filled = False
 
-                logging.info("Executed BUYX")
+                logger.info("Executed BUYX")
 
             # ----- AVERAGING -----
             elif signal_type.startswith("AVER"):
@@ -115,10 +122,10 @@ class WAVEXTradingService:
                     symbol=self.symbol,
                     side="buy",
                     amount_type="fixed",
-                    amount=50,
+                    amount=self.amount,
                     order_type="market",
                     market_type="futures",
-                    leverage=1,
+                    leverage=self.leverage,
                     product_type="USDT-FUTURES",
                     margin_coin="USDT",
                     position_action="open",
@@ -127,7 +134,7 @@ class WAVEXTradingService:
 
                 self.state.averaging_levels[index].filled = True
 
-                logging.info(f"Executed {signal_type}")
+                logger.info(f"Executed {signal_type}")
 
             # ----- CLOSEX -----
             elif signal_type == "CLOSEX":
@@ -146,7 +153,7 @@ class WAVEXTradingService:
                     lvl.level = None
                     lvl.filled = False
 
-                logging.info("Executed CLOSEX")
+                logger.info("Executed CLOSEX")
 
         except Exception as e:
-            logging.error(f"Error in bot cycle: {e}")
+            logger.error(f"Error in bot cycle: {e}")

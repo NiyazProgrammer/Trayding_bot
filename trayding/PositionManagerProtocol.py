@@ -11,7 +11,7 @@ class PositionManagerProtocol(ABC):
             amount_type: str,
             order_type: str,
             market_type: str = "spot",
-            amount: int = 0.0,
+            amount: float = 0.0,
             percentage: float = 0.0,
             position_action: str = "",
             leverage: float = 0.0,
