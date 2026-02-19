@@ -10,16 +10,22 @@ class TradingController:
             raise RuntimeError("Trading session not created")
         self._session.set_signal_handler(on_signal)
 
-    def start(self, params, on_signal, interval_sec=60):
+    def start(self, params, on_signal):
         # If there's an existing session that's running, raise error
         if self._session and self._session.is_running:
             raise RuntimeError("Trading already running")
-        
+
         # If there's an existing stopped session, clean it up
         if self._session and not self._session.is_running:
             self._session = None
 
         trading_service = self._factory(params)
+
+        timeframe = trading_service.timeframe
+        if trading_service.timeframe.endswith("m"):
+            interval_sec = 30
+        else:
+            interval_sec = 60
 
         self._session = TradingSession(
             trading_service=trading_service,
@@ -27,7 +33,7 @@ class TradingController:
             on_signal=on_signal
         )
         self._session.start()
-
+        
         return trading_service
 
     def stop(self):
