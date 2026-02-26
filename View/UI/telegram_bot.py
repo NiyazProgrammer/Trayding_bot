@@ -99,7 +99,7 @@ class TelegramTradingBot:
                 on_signal=None
             )
 
-            send_signal = self._make_signal_sender(chat_id, trading_service)
+            send_signal = self._make_signal_sender(trading_service)
             self._controller.attach_signal_handler(send_signal)
 
             text = (
