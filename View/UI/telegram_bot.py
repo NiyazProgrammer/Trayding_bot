@@ -2,7 +2,6 @@ import asyncio
 
 from ccxt.static_dependencies.ethereum.abi.grammar import normalize
 from telegram.ext import ApplicationBuilder, CommandHandler
-
 from View.entity.user_settings import UserSettings
 from View.trayding_controller import TradingController
 from View.factory import create_wavex_trading_service
@@ -10,6 +9,10 @@ from View.UI.keyboards import main_menu
 from telegram.ext import CallbackQueryHandler
 from config import ExchangeConfig
 from View.UI.signal_formatter import build_signal_text
+
+class TelegramConfig:
+    SIGNAL_CHAT_ID = -1002373126745
+    SIGNAL_THREAD_ID = 135
 
 class TelegramTradingBot:
     def __init__(self, token: str, loop: asyncio.AbstractEventLoop = None):
@@ -129,7 +132,7 @@ class TelegramTradingBot:
             reply_markup=main_menu(self._controller.is_running())
         )
 
-    def _make_signal_sender(self, chat_id: int, trading_service):
+    def _make_signal_sender(self, trading_service):
         def send_signal(signal: dict):
             text = build_signal_text(
                 signal=signal,
@@ -142,8 +145,9 @@ class TelegramTradingBot:
 
             asyncio.run_coroutine_threadsafe(
                 self._app.bot.send_message(
-                    chat_id=chat_id,
+                    chat_id=TelegramConfig.SIGNAL_CHAT_ID,
                     text=text,
+                    message_thread_id=TelegramConfig.SIGNAL_THREAD_ID,
                     parse_mode = "Markdown"
                 ),
                 self._loop
